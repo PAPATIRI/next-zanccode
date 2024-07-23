@@ -1,6 +1,7 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-component";
 import { notFound } from "next/navigation";
+import "@/style/mdx.css";
 
 interface PostPageProps {
   params: {
