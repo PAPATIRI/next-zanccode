@@ -2,6 +2,13 @@ import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { sortPosts } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "zanccode",
+  description:
+    "where i write all my problems down clearly so it is half solved",
+};
 
 const POST_PER_PAGE = 5;
 interface BlogPageProps {

@@ -37,3 +37,6 @@ next-env.d.ts
 
 # velite files
 .velite
+
+#env files
+.env.local
