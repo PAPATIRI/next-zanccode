@@ -17,7 +17,7 @@ export function Tag({ tag, current, count }: TagProps) {
         className: "no-underline rounded-md",
       })}
     >
-      {tag}
+      {tag} {count ? `(${count})` : null}
     </Link>
   );
 }
