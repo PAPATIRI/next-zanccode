@@ -1,8 +1,9 @@
 export const siteConfig = {
-  name: "BlogUh",
-  url: "https://example.com",
-  description: "Nexjs 14 with tailwindcss typescript shadcn and velite",
-  author: "zancc",
+  name: "zanccode",
+  url: "https://syarifth.my.id",
+  description:
+    "website personal blog berisi bacotan kurang valid tapi cukup menggigid",
+  author: "syarif th",
   links: {
     instagram: "https://www.instagram.com/zancc_/",
     tiktok: "https://www.tiktok.com/@syarif_th_",

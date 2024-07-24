@@ -34,20 +34,23 @@ export function MobileNav() {
             className="flex items-center"
             onOpenChange={setOpen}
           >
-            <Icons.logo className="mr-2 h-4 w-4" />
-            <span className="font-bold">{siteConfig.name}</span>
+            <span className="font-bold text-2xl">{siteConfig.name}</span>
           </MobileLink>
         </SheetTitle>
         <SheetDescription>
           <VisuallyHidden>mobile navbar</VisuallyHidden>
         </SheetDescription>
-        <div className="flex flex-col gap-3 mt-3">
+        <div className="flex flex-col gap-3 mt-5">
           <MobileLink href={"/blog"} onOpenChange={setOpen}>
             Blog
           </MobileLink>
           <MobileLink href={"/about"} onOpenChange={setOpen}>
             About
           </MobileLink>
+          <MobileLink href={"/tags"} onOpenChange={setOpen}>
+            Tags
+          </MobileLink>
+          <hr className="my-5" />
           <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
             github
           </Link>
