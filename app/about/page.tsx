@@ -35,8 +35,9 @@ export default async function AboutPage() {
           <p className="text-muted-foreground text-base py-2">
             seorang pria tampan kelahiran pedalaman Kalimantan Barat. dengan
             nama syarif taufik hidayatulloh (nama menurut akta kelahiran), yang
-            berarti kurang lebih "petunjuk atau hidayah dari Allah yang mulia"
-            dayummmmmm so gewd my name, thnx ayahanda dan ibunda koeh.
+            berarti kurang lebih &quot;petunjuk atau hidayah dari Allah yang
+            mulia&quot; dayummmmmm so gewd my name, thnx ayahanda dan ibunda
+            koeh.
           </p>
           <p className="text-muted-foreground text-base py-2">
             senang menyesatkan diri belajar hal baru di dunia programming atau

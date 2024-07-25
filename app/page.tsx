@@ -17,7 +17,7 @@ export default function Home() {
           <p className="max-w-[42rem] mx-auto text-muted-foreground sm:text-xl text-balance">
             Welcome to my <q className="inline font-bold italic">dear diary</q>,
             where i write all my problems down clearly so it is half solved,
-            that's what saying says
+            that&apos;s what saying says
           </p>
           <div className="flex flex-col gap-4 justify-center sm:flex-row">
             <Link

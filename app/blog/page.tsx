@@ -39,8 +39,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <h1 className="inline-block font-black text-4xl lg:text-5xl">Blog</h1>
           <p className="text-base mt-4 text-muted-foreground">
             my bacotan tentang dunia perkodingan yang sedang saya selami. all
-            these bacotan is not valid coz i'm not that "seseorang yang
-            kredibel".
+            these bacotan is not valid coz i&apos;m not that &quot;seseorang
+            yang kredibel&quot;.
           </p>
         </div>
       </div>
