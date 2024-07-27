@@ -1,0 +1,223 @@
+---
+title: berkenalan dengan markdown-jsx (mdx) dan rasakan +1000 aura
+description: personal blog ini dibangun dengan nextjs 14, shadcn ui, tailwindcss, dan velite sebagai mdx file handler untuk menjadikannya sebagai konten dari web blog ini
+date: 2024-07-27
+tags: ["learn++"]
+published: true
+writer: zancc
+---
+
+# Perkenalan
+
+cheatseet markdown di sini di adaptasi dari https://guides.github.com/features/mastering-markdown/
+
+<Callout type="warning">
+  belajar mdx syntax karena untuk kebutuhan menulis konten di personal blog ini
+  yang kontennya berbasis mdx file
+</Callout>
+
+# Syntax Guide
+
+beberapa markdown syntax yang bisa dipakai dimanapun di github.com atau di teks kita sendiri.
+
+## Headers
+
+```mdx
+# ini h1 tag di markdown
+
+## ini h2 tag di markdown
+
+### ini h3 tag di markdown
+```
+
+tampilannya akan seperti judul dan subjudul di artikel ini untuk h1, h2, dan h3 di markdown, karena artikel ini ditulis di file markdown (mdx file)
+
+## Styling Text
+
+```mdx
+_ini akan menjadikan teks italic_
+**ini akan menjadikan teks bold**
+_kita **bisa** menggabungkan keduanya_
+**_ini akan menjadikan teks bold dan italic_**
+~~ini akan menjadikan line through text~~
+```
+
+tampilannya akan tampak seperti di bawah ini:
+
+_ini akan menjadikan teks italic_
+
+**ini akan menjadikan teks bold**
+
+_kita **bisa** menggabungkan keduanya_
+
+**_ini akan menjadikan teks bold dan italic_**
+
+~~ini akan **_menjadikan_** line through text~~
+
+## Quoting
+
+dengan tanda > kita bisa membuat seperti quote pada tampilan teks
+
+```mdx
+> kita hidup di masa depan, masa kini adalah masa lalu
+```
+
+dan tampilan dari syntax di atas akan tampak seperti di bawah ini:
+
+> kita hidup di masa depan, masa kini adalah masa lalu
+
+## Quoting Code
+
+kita juga bisa memberikan quoting pada teks tertentu di tengah tengah kalimat dengan tanda backticks (``)
+
+```mdx
+not only `missing u`, but also `i miss us`
+```
+
+tampilanya akan tampak seperti di bawah ini:
+
+not only `missing u`, but also `i miss us`
+
+untuk memformat beberapa teks atau kalimat dalam satu block bisa menggunakan 3 tanda backticks
+
+```
+ini beberapa baris kalimat
+yang di kurung di dalam 3 backticks
+sehingga akan di format menjadi satu block
+```
+
+## Links
+
+kita juga bisa membuat link dengan tanda [] untuk teks yang akan di tampilkan dan tanda () untuk alamat url atau link sebuah website
+
+```mdx
+instagram [pria tampan dan sholeh](https://www.instagram.com/zancc_/)
+```
+
+syntax di atas akan tampak seperti di bawah ini:
+
+instagram [pria tampan dan sholeh](https://www.instagram.com/zancc_/)
+
+## Lists
+
+kita juga bisa membuat list di markdown, seperti di html dimana untuk list ada yang ordered list dan unordered list
+
+### Unordered
+
+```mdx
+- Item 1
+  - Item 1a
+  * Item 1b
+```
+
+tampilan dari syntax di atas seperti di bawah ini:
+
+- Item 1
+  - Item 1a
+  * Item 1b
+
+### Ordered
+
+```mdx
+1. Item 1
+   1. Item 1a
+   2. Item 1b
+```
+
+tampilan dari syntax di atas akan tampak seperti di bawah ini:
+
+1. Item 1
+   1. Item 1a
+   2. Item 1b
+
+## Images
+
+kita bisa menampilkan gambar dari external link atau dari repository project kita.
+
+```mdx
+![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+![Orang Tampan](../../public/avatar.png)
+
+Format: ![Alt Text](url)
+```
+
+![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+![Orang Tampan](../../public/avatar.png)
+
+## Syntax Highlighting
+
+contoh syntax highlighting dengan [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
+
+````mdx
+```jsx
+function helloWorld(arg) {
+  if (!arg) {
+    console.log("hello duniaku");
+  } else {
+    console.log(`hello${arg}`);
+  }
+}
+```
+````
+
+syntax di atas akan tampak seperti di bawah ini:
+
+```jsx
+function helloWorld(arg) {
+  if (!arg) {
+    console.log("hello duniaku");
+  } else {
+    console.log(`hello${arg}`);
+  }
+}
+```
+
+## Footnotes
+
+```mdx
+contoh simple footnote[^1]. dan teks setelahnya
+
+teks di bawah ini akan tampil di halaman paling bawah pada halaman ini
+
+[^1]: contoh referensi
+```
+
+hasil syntax di atas akan tampak seperti di bawah ini:
+
+contoh simple footnote[^1]. dan teks setelahnya
+
+[^1]: contoh referensi
+
+## Task Lists
+
+```mdx
+- [x] list syntax di butuhkan (ordered atau unordered list)
+- [x] ini adalah item list yang selesai
+- [ ] ini adalah item list yang belum selesai
+```
+
+hasil syntax di atas akan tampak seperti di bawah ini:
+
+- [x] list syntax di butuhkan (ordered atau unordered list)
+- [x] ini adalah item list yang selesai
+- [ ] ini adalah item list yang belum selesai
+
+## Tables
+
+kita bisa membuat tabel dengan menyusun daftar kata dengan di pisahkan dengan hyphens `-` (untuk row pertama), dan pisahkan antar kolom dengan tanda pipe `|`
+
+```mdx
+| Header Tabel Pertama    | Header Tabel Kedua    |
+| ----------------------- | --------------------- |
+| konten cell 1           | konten cell 2         |
+| konten di kolom pertama | konten di kolom kedua |
+```
+
+hasil syntax di atas akan tampak seperti di bawah ini:
+
+| Header Tabel Pertama    | Header Tabel Kedua    |
+| ----------------------- | --------------------- |
+| konten cell 1           | konten cell 2         |
+| konten di kolom pertama | konten di kolom kedua |

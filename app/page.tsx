@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PostItem } from "@/components/post-item";
 import { DM_Serif_Display } from "next/font/google";
 
-export const serifDisplay = DM_Serif_Display({
+const serifDisplay = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-serif",
@@ -16,11 +16,11 @@ export default function Home() {
 
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:mt-10 lg:py-32">
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:mt-10 lg:py-24">
         <div className="container flex flex-col gap-8 text-center">
           <h1
             className={cn(
-              "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-balance font-normal font-serif",
+              "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-balance tracking-wide font-normal font-serif",
               serifDisplay.variable
             )}
           >
@@ -44,7 +44,7 @@ export default function Home() {
       <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 mt-52">
         <h2
           className={cn(
-            "text-3xl mb-5 md:mb-10 sm:text-5xl md:text-6xl lg:text-7xl text-center font-serif",
+            "text-3xl mb-5 md:mb-10 sm:text-4xl md:text-5xl lg:text-6xl text-center font-serif tracking-wider",
             serifDisplay.variable
           )}
         >

@@ -12,7 +12,6 @@ import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
-import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
@@ -48,7 +47,7 @@ export function MobileNav() {
             Tags
           </MobileLink>
           <MobileLink href={"/about"} onOpenChange={setOpen}>
-            About
+            About Me
           </MobileLink>
           <hr className="my-5" />
           <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">

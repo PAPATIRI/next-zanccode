@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { DM_Serif_Display } from "next/font/google";
 
-export const serifDisplay = DM_Serif_Display({
+const serifDisplay = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-serif",
@@ -52,7 +51,7 @@ export function MainNav() {
           pathName === "/about" ? "text-foreground" : "text-foreground/60"
         )}
       >
-        About
+        About Me
       </Link>
     </nav>
   );

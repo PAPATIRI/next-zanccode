@@ -4,7 +4,7 @@ import { posts } from "#site/content";
 import { Tag } from "@/components/tag";
 import { DM_Serif_Display } from "next/font/google";
 
-export const serifDisplay = DM_Serif_Display({
+const serifDisplay = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-serif",
@@ -24,7 +24,7 @@ export default async function TagsPage() {
         <div className="flex-1 space-y-4">
           <h1
             className={cn(
-              "inline-block font-serif text-4xl lg:text-5xl",
+              "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
               serifDisplay.variable
             )}
           >

@@ -5,6 +5,16 @@ import "@/style/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Tag } from "@/components/tag";
+import { cn, formatDate } from "@/lib/utils";
+import { DM_Serif_Display } from "next/font/google";
+import { Calendar } from "lucide-react";
+import { Writer } from "@/components/writer";
+
+const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 interface PostPageProps {
   params: {
@@ -73,12 +83,16 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
-      <h1 className="mb-8">{post.title}</h1>
-      <div className="flex mb-4 gap-2">
-        {post.tags?.map((tag) => (
-          <Tag tag={tag} key={tag} />
-        ))}
-      </div>
+      <h1
+        className={cn("mb-8 font-serif tracking-wider", serifDisplay.variable)}
+      >
+        {post.title}
+      </h1>
+      <Writer
+        writer={post.writer ? post.writer : "anonym"}
+        date={post.date}
+        tags={post.tags}
+      />
       <div className="mb-10 md:mb-20">
         {post.description ? (
           <p className="text-base mt-0 text-muted-foreground">

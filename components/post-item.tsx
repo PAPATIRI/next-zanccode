@@ -1,14 +1,6 @@
-import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { cn, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Tag } from "./tag";
-import { DM_Serif_Display } from "next/font/google";
-
-export const serifDisplay = DM_Serif_Display({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
 
 interface PostItemProps {
   slug: string;
@@ -28,7 +20,7 @@ export function PostItem({
   return (
     <article className="group flex flex-col gap-2 mb-10 md:mb-16 transition-all ease-in-out duration-500">
       <div className="mb-2">
-        <h2 className="text-xl font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
+        <h2 className="text-xl md:text-2xl font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
           <Link href={"/" + slug}>
             {title && title.length > 70
               ? title.substring(0, 70) + "..."

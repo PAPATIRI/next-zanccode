@@ -1,6 +1,14 @@
 import { siteConfig } from "@/config/site";
 import { Mail } from "lucide-react";
 import { Icons } from "./icons";
+import { DM_Serif_Display } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export function SiteFooter() {
   return (
@@ -25,8 +33,12 @@ export function SiteFooter() {
           </a>
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
-          <a href={siteConfig.links.personalSite} target="_blank">
-            {siteConfig.author}
+          <a
+            href={siteConfig.links.personalSite}
+            className={cn("font-serif text-base", serifDisplay.variable)}
+            target="_blank"
+          >
+            {siteConfig.author}.
           </a>
         </div>
       </div>
