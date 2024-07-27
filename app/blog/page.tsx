@@ -3,8 +3,15 @@ import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
+import { cn, getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { Metadata } from "next";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "zanccode",
@@ -36,7 +43,14 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     <div className="container max-w-4xl py-6 lg:py-10">
       <div className="mb-10 md:mb-20 flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 spase-y-4">
-          <h1 className="inline-block font-black text-4xl lg:text-5xl">Blog</h1>
+          <h1
+            className={cn(
+              "inline-block font-serif text-5xl lg:text-5xl",
+              serifDisplay.variable
+            )}
+          >
+            Blog.
+          </h1>
           <p className="text-base mt-4 text-muted-foreground">
             my bacotan tentang dunia perkodingan yang sedang saya selami. all
             these bacotan is not valid coz i&apos;m not that &quot;seseorang

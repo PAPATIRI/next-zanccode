@@ -3,6 +3,13 @@ import { cn, sortPosts } from "@/lib/utils";
 import { posts } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export default function Home() {
   const latesPost = sortPosts(posts).slice(0, 5);
@@ -11,7 +18,12 @@ export default function Home() {
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:mt-10 lg:py-32">
         <div className="container flex flex-col gap-8 text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-balance">
+          <h1
+            className={cn(
+              "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-balance font-normal font-serif",
+              serifDisplay.variable
+            )}
+          >
             Hello, I&apos;m Syarif
           </h1>
           <p className="max-w-[42rem] mx-auto text-muted-foreground sm:text-xl text-balance">
@@ -30,7 +42,12 @@ export default function Home() {
         </div>
       </section>
       <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 mt-52">
-        <h2 className="text-3xl mb-5 md:mb-10 sm:text-5xl md:text-6xl lg:text-7xl font-black text-center">
+        <h2
+          className={cn(
+            "text-3xl mb-5 md:mb-10 sm:text-5xl md:text-6xl lg:text-7xl text-center font-serif",
+            serifDisplay.variable
+          )}
+        >
           Latest Posts
         </h2>
         <ul className="flex flex-col">

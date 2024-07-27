@@ -5,13 +5,27 @@ import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export function MainNav() {
   const pathName = usePathname();
   return (
     <nav className="flex items-center space-x-4 lg:space-x-6">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <span className="font-bold text-2xl">{siteConfig.name}</span>
+        <span
+          className={cn(
+            "text-xl md:text-3xl font-serif",
+            serifDisplay.variable
+          )}
+        >
+          {siteConfig.name}
+        </span>
       </Link>
       <Link
         href="/blog"
@@ -23,15 +37,6 @@ export function MainNav() {
         Blog
       </Link>
       <Link
-        href="/about"
-        className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/about" ? "text-foreground" : "text-foreground/60"
-        )}
-      >
-        About
-      </Link>
-      <Link
         href="/tags"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
@@ -39,6 +44,15 @@ export function MainNav() {
         )}
       >
         Tags
+      </Link>
+      <Link
+        href="/about"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
+          pathName === "/about" ? "text-foreground" : "text-foreground/60"
+        )}
+      >
+        About
       </Link>
     </nav>
   );

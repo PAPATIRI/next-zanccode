@@ -1,8 +1,14 @@
-import { ArrowRightIcon, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
 import { cn, formatDate } from "@/lib/utils";
 import { Tag } from "./tag";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 interface PostItemProps {
   slug: string;
@@ -20,32 +26,33 @@ export function PostItem({
   tags,
 }: PostItemProps) {
   return (
-    <article className="flex flex-col gap-2 mb-10 md:mb-20">
-      <div>
-        <h2 className="text-2xl font-bold">
-          <Link href={"/" + slug}>{title}</Link>
+    <article className="group flex flex-col gap-2 mb-10 md:mb-16 transition-all ease-in-out duration-500">
+      <div className="mb-2">
+        <h2 className="text-xl font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
+          <Link href={"/" + slug}>
+            {title && title.length > 70
+              ? title.substring(0, 70) + "..."
+              : title}
+          </Link>
         </h2>
       </div>
-      <div className="flex gap-2">
-        {tags?.map((tag) => (
-          <Tag tag={tag} key={tag} />
-        ))}
+      <div className="max-w-none text-muted-foreground mb-1">
+        {description && description.length > 160
+          ? description?.substring(0, 160) + "..."
+          : description}
       </div>
-      <div className="max-w-none text-muted-foreground">{description}</div>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
+        <div className="flex gap-2">
+          {tags?.map((tag) => (
+            <Tag tag={tag} key={tag} />
+          ))}
+        </div>
         <dl>
           <dt className="sr-only">Published On</dt>
-          <dd className="text-sm sm:text-base text-muted-foreground font-medium flex items-center gap-1">
-            <Calendar className="h-4 w-4 mr-2" />
+          <dd className="text-sm text-muted-foreground font-medium flex items-center gap-1">
             <time dateTime="date">{formatDate(date)}</time>
           </dd>
         </dl>
-        <Link
-          href={"/" + slug}
-          className={cn(buttonVariants({ variant: "link" }), "py-0")}
-        >
-          Read More <ArrowRightIcon className="w-4 h-4 ml-2" />
-        </Link>
       </div>
     </article>
   );

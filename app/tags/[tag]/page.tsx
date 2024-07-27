@@ -1,11 +1,17 @@
-import { getAllTags, getPostByTagSlug, sortTagsByCount } from "@/lib/utils";
+import { cn, getAllTags, getPostByTagSlug, sortTagsByCount } from "@/lib/utils";
 import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tag } from "@/components/tag";
-import { QueryPagination } from "@/components/query-pagination";
 import { slug } from "github-slugger";
 import { Metadata } from "next";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 interface TagPageProps {
   params: {
@@ -40,14 +46,18 @@ export default function TagPage({ params }: TagPageProps) {
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
+      <div className="flex mb-10 flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 spase-y-4">
-          <h1 className="capitalize inline-block font-black text-4xl lg:text-5xl">
-            {title}
+          <h1
+            className={cn(
+              "capitalize inline-block font-serif text-4xl lg:text-5xl",
+              serifDisplay.variable
+            )}
+          >
+            {title}.
           </h1>
         </div>
       </div>
-      <hr className="mt-10" />
       <div className="grid grid-cols-12 gap-3 mt-8">
         <div className="col-span-12 col-start-1 sm:col-span-8">
           {displayPosts?.length > 0 ? (

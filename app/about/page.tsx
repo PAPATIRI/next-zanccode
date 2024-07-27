@@ -1,6 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 import { Metadata } from "next";
+import { DM_Serif_Display } from "next/font/google";
+
+export const serifDisplay = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -12,8 +20,13 @@ export default async function AboutPage() {
     <div className="container max-w-4xl py-6 lg:py-10">
       <div className="mb-10 md:mb-20 flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 space-x-4">
-          <h1 className="inline-block font-black text-4xl lg:text-5xl">
-            About Me
+          <h1
+            className={cn(
+              "inline-block font-serif text-4xl lg:text-5xl",
+              serifDisplay.variable
+            )}
+          >
+            About Me.
           </h1>
         </div>
       </div>

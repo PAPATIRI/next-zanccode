@@ -66,4 +66,38 @@
   body {
     @apply bg-background text-foreground;
   }
+  .scrollbar-customize::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: hsl(210 40% 98%);
+  }
+
+  .scrollbar-customize::-webkit-scrollbar {
+    width: 12px;
+    background-color: hsl(210 40% 98%);
+  }
+
+  .scrollbar-customize::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: hsl(217.2 32.6% 17.5%);
+  }
+
+  /* dark */
+  .scrollbar-customize-dark::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: hsl(217.2 32.6% 17.5%);
+  }
+
+  .scrollbar-customize-dark::-webkit-scrollbar {
+    width: 12px;
+    background-color: hsl(217.2 32.6% 17.5%);
+  }
+
+  .scrollbar-customize-dark::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: hsl(210 40% 98%);
+  }
 }
