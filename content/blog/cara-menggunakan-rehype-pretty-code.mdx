@@ -1,0 +1,165 @@
+---
+title: cara menggunakan rehype pretty code untuk syntax highlighting code di markdown file
+description: dengan menggunakan package rehype pretty code kita bisa menghighlight text code di file markdown kita ketika di tampilkan di browser
+date: 2024-07-31
+tags: ["learn++", "markdown"]
+published: true
+writer: zancc
+---
+
+[`rehype-pretty-code`](https://github.com/atomiks/rehype-pretty-code) adalah sebuah plugin yang dibuat oleh [`shiki`](https://github.com/shikijs/shiki), syntax highlighter untuk block kode di markdown atau mdx file. yang bekerja di server saat build time (menghindari runtime syntax hightlighting) dan juga bekerja di client untuk highlighting secara dinamis
+
+## Editor-Grade Highlighting
+
+kita dapat menggunakan syntax highlighting milik kode editor VS Code yang dimana populer dengan banyaknya ekosistem tema warnanya.
+
+## Line Numbers and Line Highlighting
+
+kita dapat meng-highlight baris kode untuk menekankan perhatian pembaca padanya
+
+- `{4}` ini berfungsi untuk memberikan highlight pada baris ke 4
+- `showLineNumbers` berfungsi untuk menampilkan nomor baris pada blok kode
+
+````mdx
+```js {4} showLineNumbers
+import { useFloating } from "@floating-ui/react";
+
+function MyComponent() {
+  const { refs, floatingStyles } = useFloating();
+}
+```
+````
+
+syntax di atas akan tampil seperti di bawah ini
+
+```js {4} showLineNumbers
+import { useFloating } from "@floating-ui/react";
+
+function MyComponent() {
+  const { refs, floatingStyles } = useFloating();
+}
+```
+
+## Word Highlighting
+
+kita juga bisa meng-highlight pada satu kata untuk menonjolkan kata tersebut di antara yang lainnya
+
+- `/floatingStyles/` kita dapat meng-highlight kata dengan tanda `/ /` dan meletakan kata yang ingin di highlight di antara tanda garis miring tersebut
+
+````mdx
+```js /floatingStyles/
+import { useFloating } from "@floating-ui/react";
+
+function MyComponent() {
+  const { refs, floatingStyles } = useFloating();
+}
+```
+````
+
+syntax di atas akan meng-hightlight kata `floatingStyles` seperti di bawah ini
+
+```js /floatingStyles/
+import { useFloating } from "@floating-ui/react";
+
+function MyComponent() {
+  const { refs, floatingStyles } = useFloating();
+}
+```
+
+## ANSI Highlighting
+
+kita juga dapat meng-highlight ANSI
+
+````mdx
+```ansi
+[0;36m  vite v5.0.0[0;32m dev server running at:[0m
+
+  > Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m
+  > Network: [0;2muse `--host` to expose[0m
+
+  [0;36mready in 125ms.[0m
+
+[0;2m8:38:02 PM[0m [0;36;1m[vite][0m [0;32mhmr update [0;2m/src/App.jsx
+```
+
+Inline ANSI: `> Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m{:ansi}`
+
+---
+````
+
+hasil dari syntax di atas akan tampak seperti di bawah ini
+
+```ansi
+[0;36m  vite v5.0.0[0;32m dev server running at:[0m
+
+  > Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m
+  > Network: [0;2muse `--host` to expose[0m
+
+  [0;36mready in 125ms.[0m
+
+[0;2m8:38:02 PM[0m [0;36;1m[vite][0m [0;32mhmr update [0;2m/src/App.jsx
+```
+
+Inline ANSI: `> Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m{:ansi}`
+
+---
+
+### Kitchen Sink Meta Strings
+
+kita dapat mengkombinasikan key dari rehype pretty code plugins seperti di bawah ini
+
+- `showLineNumbers` untuk menampilkan nomor baris
+- `{2-4}` untuk meng-highlight baris 2 sampai baris ke 4
+- `title="isEven.js"` untuk memberikan judul atau nama file misal untuk blok kode terkait
+- `/console/` untuk meng-highlight kata `console` di blok kode terkati
+- `caption="I am caption"` untuk memberikan caption di bawah blok kode
+
+````mdx
+```js showLineNumbers {2-4} title="isEven.js" /console/ caption="Im a caption"
+function isEven(number) {
+  if (number === 1) {
+    return false;
+  } else if (number === 2) {
+    return true;
+  } else if (number === 3) {
+    return false;
+  } else if (number === 4) {
+    return true;
+  } else if (number === 5) {
+    return false;
+  } else {
+    return "Number is not between 1 and 5.";
+  }
+}
+
+// Example usage:
+console.log(isEven(3)); // Should return false
+console.log(isEven(4)); // Should return true
+console.log(isEven(10)); // Should return "Number is not between 1 and 5."
+```
+````
+
+syntax di atas akan tampil seperti di bawah ini
+
+```js showLineNumbers {2-4} title="isEven.js" /console/ caption="Im a caption"
+function isEven(number) {
+  if (number === 1) {
+    return false;
+  } else if (number === 2) {
+    return true;
+  } else if (number === 3) {
+    return false;
+  } else if (number === 4) {
+    return true;
+  } else if (number === 5) {
+    return false;
+  } else {
+    return "Number is not between 1 and 5.";
+  }
+}
+
+// Example usage:
+console.log(isEven(3)); // Should return false
+console.log(isEven(4)); // Should return true
+console.log(isEven(11)); // Should return "Number is not between 1 and 5."
+```
