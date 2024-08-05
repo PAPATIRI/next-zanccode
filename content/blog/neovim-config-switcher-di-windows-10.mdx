@@ -1,0 +1,125 @@
+---
+title: membuat neovim config switcher untuk windows 10
+description: ketika ngulik bagaimana konfigurasi neovim untuk bahasa pemograman tertentu tapi sering tabrakan dengan bahasa lainnya maka sepertinya tuan muda ini butuh config switcher
+date: 2024-08-03
+tags: ["neovim"]
+published: true
+writer: zancc
+---
+
+## Latar Belakang
+
+biasanya aku ngulik vim atau neovim untuk berbagai tech stack pilihan yang gak jago jago amat. dan masalah utama adalah sering kali konfigurasi yang aku buat bertabrakan antara satu
+tech stack dengan tech stack lainnya. seperti konfigurasi reactjs ekosistem tabrakan dengan konfigurasi laravel + inertia ekosistem. dan ya memang ini murni karena `skill issue` saja, hehe.
+jadi untuk memenuhi keinginan utamaku terhadap neovim yaitu:
+
+- menggunakan neovim sebagai daily code editor
+- mengulik neovim dengan configuration from scratch
+
+maka aku memutuskan untuk membuat `neovim config switcher`. karena aku mau misahin konfigurasi yang udah stable untuk tech steck tertentu dengan konfigurasi yang aku buat sendiri.
+untuk sekarang aku mau buat 2 konfigurasi, dan kedepannya mungkin akan bertambah. konfigurasi pertama untuk konfigurasi default yaitu konfigurasi yang aku setup from scratch dan
+yang kedua konfigurasi yang sudah ready to go dari [lazyVim](https://www.lazyvim.org/).
+
+post ini terinspirasi dari [artikel di medium ini](https://medium.com/@joydeep150703/neovim-config-switcher-but-for-windows-ed6ef08d045b)
+
+## Persiapan
+
+untuk membuat neovim config switcher di windows ada beberapa persiapan yang perlu siapkan.
+
+- `neovim dengan versi 0.9+` (karena kita butuh NVIM_APPNAME yang tersedia di vim versi terbaru)
+- `windows powershell` (sudah terinstall seharusnya di windows)
+- `beberapa konfigurasi neovim` (saya akan menyertakan link github untuk 2 konfigurasi neovimku)
+- `fzf` (untuk kita gunakan di fungsi config switcher)
+- `chocolatey` (package manager milik windows untuk menginstall neovim dan fzf dll)
+
+## Install Vim dan fzf
+
+untuk langkah pertama kita akan menginstall neovim dan fzf dengan chocolatey, kamu juga bisa pakai winget dan lainnya untuk installasi neovim di windows.
+aku di sini akan pakai chocolatey, cara install chocolatey sudah ada di [post ini](https://chocolatey.org/install).
+aku install neovim dan fzf pakai powershell yang aku run as administrator. perintah installasinya di bawah ini:
+
+```shell
+choco install neovim
+```
+
+```shell
+choco install fzf
+```
+
+ketika muncul konfirmasi untuk installasi ketik saja `A` yang berarti yes to all, jadi gk perlu ketik y berulang buat konfirmasi yang banyak itu.
+
+## Konfigurasi Neovim
+
+konfigurasi neovim secara default untuk di `windows` terletak di `~/AppData/Local/nvim atau sama dengan (C:\Users\namamu\AppData\Local\nvim)`. jadi jika di dalam folder local belum ada folder nvim maka kita buat sendiri.
+dan untuk neovim kita bisa buat konfigurasi awal dengan membuat file di dalam folder `nvim` dengan nama `init.lua`, atau untuk menggunakan konfigurasi ku bisa cek [link github ini](https://github.com/PAPATIRI/neovim-windows).
+cara nya cukup clone repository tersebut di dalam folder nvim ini
+
+```shell
+git clone https://github.com/PAPATIRI/neovim-windows .
+```
+
+perintah di atas akan mengkloning repo konfigurasi neovim untuk windows dari link di atas ke dalam folder nvim
+
+setelah satu konfigurasi neovim sudah tersimpan di nvim folder selanjutnya kita akan menggunakan konfigurasi ready to use dari lazyVim.
+untuk menggunakan konfigurasi milik lazyVim kita perlu membuat folder baru di dalam folder local, bersandingan langsung dengan folder nvim yang telah kita buat.
+
+buka terminal dan ketikan perintah di bawah
+
+```shell
+git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim-lazyvim
+```
+
+perintah di atas akan mengkloning konfigurasi neovim dari lazyVim ke dalam folder nvim-lazyvim.
+`$env:LOCALAPPDATA` dimana di windows ini sama dengan `C:\users\namamu\AppData\Local\`.
+
+sekarang kita sudah memiliki dua konfigurasi neovim, yaitu:
+
+- konfigurasi from scratch di dalam folder `nvim`
+- konfigurasi dari lazyVim di dalam folder `nvim-lazyvim`
+
+selanjutnya kita akan membuat fungsi yang dapat di eksekusi di powershell milik windows.
+
+## konfigurasi powershell
+
+profile di powershell itu sama dengan .zshrc atau .bashrc jika di linux.
+untuk melihat code profile powershell kita bisa menggunakan `$PROFILE` keyword dan membukanya di kode editor apapun.
+di sini aku pakai vs code dan untuk membuka profile powershell cukup dengan command berikut
+
+```shell
+code $PROFILE
+```
+
+perintah di atas akan membuka file `Microsoft.PowerShell_profile.ps1` di vs code.
+selanjutnya di dalam file tersebut kita tambahkan fungsi nvims yang berfungsi untuk menjadi config switcher dengan menggunakan
+fzf yang sudah kita install sebelumnya.
+
+```shell
+# Function to select Neovim configuration interactively
+function nvims {
+    $items = @("default", "nvim-lazyvim")
+    $config = $items | fzf --prompt="Neovim Config" --height=50% --layout=reverse --border
+    if (-not $config) {
+        Write-Output "Nothing selected"
+        return
+    } elseif ($config -eq "default") {
+        $env:NVIM_APPNAME = ""
+    } else {
+        $env:NVIM_APPNAME = $config
+    }
+    nvim
+}
+```
+
+setelah itu simpan perubahan profile powershell dan restart terminal.
+buka kembali terminal atau powershell dan ketikan `nvims` maka jika `fzf` sudah terintall seharusnya akan muncul pilihan konfigurasi
+neovim dengan nama `default` dan `nvim-lazyvim` sesuai di konfigurasi profile powershell yang telah dibuat.
+
+## Penutup
+
+cukup sekian bagaimana kita membuat neovim config switcher di windows, untuk di OS lain seperti Mac dan Linux seharunya step nya juga sama.
+hanya saja di bedakan dimana letak konfigurasi nya dimana di linux di `~/.config/nvim` dan script untuk fungsi nvims mungkin ada penyesuaian dan diletakan di profile terminal
+yang sedang digunakan seperti default dengan file `.bashrc` atau dengan zsh di file `.zshrc` yang keduanya seharusnya terletak di home user `~/.[zsh/bash]rc`.
+
+beli ikan lupa bersih bersih, cukup sekian terima kasih.
+
+ADIOSSS

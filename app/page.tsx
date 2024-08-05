@@ -21,7 +21,7 @@ export default function Home() {
           <h1
             className={cn(
               "text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-balance tracking-wide font-normal font-serif",
-              serifDisplay.variable
+              serifDisplay.variable,
             )}
           >
             Hello, I&apos;m Syarif
@@ -45,7 +45,7 @@ export default function Home() {
         <h2
           className={cn(
             "text-3xl mb-5 md:mb-10 sm:text-4xl md:text-5xl lg:text-6xl text-center font-serif tracking-wider",
-            serifDisplay.variable
+            serifDisplay.variable,
           )}
         >
           Latest Posts
