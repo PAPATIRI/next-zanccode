@@ -33,7 +33,17 @@
 [data-rehype-pretty-code-figure] [data-chars-id] {
   @apply border-b-2 p-1 shadow-none;
 }
+[data-rehype-pretty-code-figure]{
+  @apply mb-0;
+}
 
 .subheading-anchor {
   @apply no-underline hover:underline;
+}
+
+/* some global css file for rehype-code-title*/
+.rehype-code-title {
+  @apply text-slate-400 text-sm p-4 rounded-t italic;
+  background-color: rgb(36, 41, 46);
+  margin-bottom: -39px;
 }

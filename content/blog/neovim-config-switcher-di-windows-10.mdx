@@ -38,13 +38,17 @@ untuk langkah pertama kita akan menginstall neovim dan fzf dengan chocolatey, ka
 aku di sini akan pakai chocolatey, cara install chocolatey sudah ada di [post ini](https://chocolatey.org/install).
 aku install neovim dan fzf pakai powershell yang aku run as administrator. perintah installasinya di bawah ini:
 
-```shell
-choco install neovim
+<Pre>
+```shell:install-neovim
+choco install neovim 
 ```
+</Pre>
 
-```shell
+<Pre>
+```shell:install-fzf
 choco install fzf
 ```
+</Pre>
 
 ketika muncul konfirmasi untuk installasi ketik saja `A` yang berarti yes to all, jadi gk perlu ketik y berulang buat konfirmasi yang banyak itu.
 
@@ -54,9 +58,11 @@ konfigurasi neovim secara default untuk di `windows` terletak di `~/AppData/Loca
 dan untuk neovim kita bisa buat konfigurasi awal dengan membuat file di dalam folder `nvim` dengan nama `init.lua`, atau untuk menggunakan konfigurasi ku bisa cek [link github ini](https://github.com/PAPATIRI/neovim-windows).
 cara nya cukup clone repository tersebut di dalam folder nvim ini
 
-```shell
+<Pre>
+```shell:cloning-neovim-configuration
 git clone https://github.com/PAPATIRI/neovim-windows .
 ```
+ </Pre>
 
 perintah di atas akan mengkloning repo konfigurasi neovim untuk windows dari link di atas ke dalam folder nvim
 
@@ -65,9 +71,11 @@ untuk menggunakan konfigurasi milik lazyVim kita perlu membuat folder baru di da
 
 buka terminal dan ketikan perintah di bawah
 
-```shell
+<Pre>
+```shell:cloning-lazyVim
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim-lazyvim
 ```
+ </Pre>
 
 perintah di atas akan mengkloning konfigurasi neovim dari lazyVim ke dalam folder nvim-lazyvim.
 `$env:LOCALAPPDATA` dimana di windows ini sama dengan `C:\users\namamu\AppData\Local\`.
@@ -85,16 +93,18 @@ profile di powershell itu sama dengan .zshrc atau .bashrc jika di linux.
 untuk melihat code profile powershell kita bisa menggunakan `$PROFILE` keyword dan membukanya di kode editor apapun.
 di sini aku pakai vs code dan untuk membuka profile powershell cukup dengan command berikut
 
-```shell
+<Pre>
+```shell:edit-powershell-profile
 code $PROFILE
 ```
+ </Pre>
 
 perintah di atas akan membuka file `Microsoft.PowerShell_profile.ps1` di vs code.
 selanjutnya di dalam file tersebut kita tambahkan fungsi nvims yang berfungsi untuk menjadi config switcher dengan menggunakan
 fzf yang sudah kita install sebelumnya.
 
-```shell
-# Function to select Neovim configuration interactively
+<Pre>
+```shell:Microsoft.PowerShell_profile.ps1
 function nvims {
     $items = @("default", "nvim-lazyvim")
     $config = $items | fzf --prompt="Neovim Config" --height=50% --layout=reverse --border
@@ -109,6 +119,7 @@ function nvims {
     nvim
 }
 ```
+ </Pre>
 
 setelah itu simpan perubahan profile powershell dan restart terminal.
 buka kembali terminal atau powershell dan ketikan `nvims` maka jika `fzf` sudah terintall seharusnya akan muncul pilihan konfigurasi
