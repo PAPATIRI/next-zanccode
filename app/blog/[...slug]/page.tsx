@@ -4,10 +4,8 @@ import { notFound } from "next/navigation";
 import "@/style/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { Tag } from "@/components/tag";
-import { cn, formatDate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { DM_Serif_Display } from "next/font/google";
-import { Calendar } from "lucide-react";
 import { Writer } from "@/components/writer";
 
 const serifDisplay = DM_Serif_Display({
