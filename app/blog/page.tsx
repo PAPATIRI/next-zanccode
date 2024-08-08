@@ -33,7 +33,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   const displayPosts = sortedPosts.slice(
     POST_PER_PAGE * (currentPage - 1),
-    POST_PER_PAGE * currentPage
+    POST_PER_PAGE * currentPage,
   );
 
   const tags = getAllTags(posts);
@@ -46,15 +46,15 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <h1
             className={cn(
               "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
-              serifDisplay.variable
+              serifDisplay.variable,
             )}
           >
             Blog.
           </h1>
-          <p className="text-base mt-4 text-muted-foreground">
-            my bacotan tentang dunia perkodingan yang sedang saya selami. all
-            these bacotan is not valid coz i&apos;m not that &quot;seseorang
-            yang kredibel&quot;.
+          <p className="text-xl sm:text-2xl mt-4 text-muted-foreground">
+            A collection of problems that I have recorded for the benefit of the
+            people in the future so that the world will remember my existence in
+            this world forever.
           </p>
         </div>
       </div>

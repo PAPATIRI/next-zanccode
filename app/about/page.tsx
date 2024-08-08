@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { Facebook, GlobeIcon, Instagram, Twitter } from "lucide-react";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
 
@@ -23,7 +24,7 @@ export default async function AboutPage() {
           <h1
             className={cn(
               "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
-              serifDisplay.variable
+              serifDisplay.variable,
             )}
           >
             About Me.
@@ -33,7 +34,7 @@ export default async function AboutPage() {
       {/* <hr className="my-8" /> */}
       <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
         <div className="min-w-48 max-w-48 flex flex-col gap-2">
-          <Avatar className="h-48 w-48">
+          <Avatar className="h-36 w-36 mx-auto">
             <AvatarImage src="/avatar.png" alt={siteConfig.author} />
             <AvatarFallback>zancc</AvatarFallback>
           </Avatar>
@@ -43,6 +44,41 @@ export default async function AboutPage() {
           <p className="text-muted-foreground text-center break-words">
             Programmer Ganteng & Intelek
           </p>
+          <div className="mt-8 flex items-center mx-auto gap-2">
+            <a
+              href={siteConfig.links.twitter}
+              className="group bg-accent p-3 rounded-full flex items-center justify-center"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Twitter
+                size={28}
+                className="text-foreground transition-all duration-500 group-hover:rotate-45"
+              />
+            </a>
+            <a
+              href={siteConfig.links.instagram}
+              target="_blank"
+              className="group bg-accent p-3 rounded-full flex items-center justify-center"
+              rel="noreferrer"
+            >
+              <Instagram
+                size={28}
+                className="text-foreground transition-all duration-500 group-hover:rotate-45"
+              />
+            </a>
+            <a
+              href={siteConfig.links.personalSite}
+              target="_blank"
+              className="group bg-accent p-3 rounded-full flex items-center justify-center"
+              rel="noreferrer"
+            >
+              <GlobeIcon
+                size={28}
+                className="text-foreground transition-all duration-500 group-hover:rotate-45"
+              />
+            </a>
+          </div>
         </div>
         <div>
           <p className="text-muted-foreground text-base py-2">
@@ -61,6 +97,10 @@ export default async function AboutPage() {
             yang ke dua dibangun dengan nextjs 10, kemudian yang ke tiga
             dibangun dengan laravel, dan website personal blog terbaru ini
             dibangun dengan nextjs 14
+          </p>
+          <p className="text-muted-foreground text-base py-2">
+            senang mengenal anda saudara/i ku, semoga kita bertemu di surga
+            nanti 😎
           </p>
         </div>
       </div>

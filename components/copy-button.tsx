@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export const CopyButton = ({ text }: any) => {
   const [isCopied, setIsCopied] = useState(false);
-  console.log("text copied: ", text);
 
   const copy = async () => {
     await navigator.clipboard.writeText(text);
