@@ -1,9 +1,10 @@
 import { cn, sortPosts } from "@/lib/utils";
-import { posts } from "#site/content";
+import { posts, snippets } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
 import { DM_Serif_Display } from "next/font/google";
 import { ArrowRightIcon } from "lucide-react";
+import { SnippetItem } from "@/components/snippet-item";
 
 const serifDisplay = DM_Serif_Display({
     weight: "400",
@@ -12,7 +13,8 @@ const serifDisplay = DM_Serif_Display({
 });
 
 export default function Home() {
-    const latesPost = sortPosts(posts).slice(0, 5);
+    const latesPost = sortPosts(posts).slice(0, 3);
+    const latesSnippet = sortPosts(snippets).slice(0, 4)
 
     return (
         <>
@@ -55,6 +57,27 @@ export default function Home() {
                                 description={post.description}
                                 date={post.date}
                                 tags={post.tags}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </section>
+            <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 mt-20">
+                <h2
+                    className={cn(
+                        "text-3xl mb-5 md:mb-10 sm:text-4xl md:text-5xl lg:text-6xl text-center font-serif tracking-wider",
+                        serifDisplay.variable,
+                    )}
+                >
+                    Latest Snippets
+                </h2>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {latesSnippet.map((snippet) => (
+                        <li key={snippet.slug}>
+                            <SnippetItem
+                                slug={snippet.slug}
+                                title={snippet.title}
+                                description={snippet.description}
                             />
                         </li>
                     ))}

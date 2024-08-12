@@ -52,7 +52,7 @@ export default function SnippetPage({ searchParams }: SnippetPageProps) {
                 </div>
             </div>
             {displayPosts?.length > 0 ? (
-                <ul className="grid grid-cols-2 gap-2">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {displayPosts.map((post) => {
                         const { title, slug, description } = post;
                         return (
