@@ -1,0 +1,32 @@
+---
+title: touch functionality untuk windows powershell
+description: membuat touch functionality di windows
+date: 2024-07-31
+published: true
+writer: zancc
+---
+
+untuk membuat touch functionality seperti di linux dimana `touch` command ini berfungsi untuk membuat file kosong baru
+biasanya aku pakenya kaya gini
+
+```shell
+touch nama-file.ext
+```
+
+<Pre>
+```shell:touch.cmd
+@echo off
+    setlocal enableextensions disabledelayedexpansion
+
+    (for %%a in (%*) do if exist "%%~a" (
+        pushd "%%~dpa" && ( copy /b "%%~nxa"+,, & popd )
+    ) else (
+        type nul > "%%~fa"
+    )) >nul 2>&1
+
+```
+</Pre>
+
+simpan file touch.cmd di tempat manapun dan folder yang berisi file touch.cmd di tambahkan ke path env di windows
+
+ADIOSSSS
