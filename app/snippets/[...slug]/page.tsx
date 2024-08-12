@@ -1,7 +1,7 @@
 import { snippets } from "#site/content";
 import { MDXContent } from "@/components/mdx-component";
-import { Writer } from "@/components/writer";
 import { siteConfig } from "@/config/site";
+import "@/style/mdx.css";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
