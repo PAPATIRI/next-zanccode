@@ -1,0 +1,47 @@
+---
+title: konfigurasi default terminal lazyvim berdasarkan OS
+description: konfigurasi default terminal lazyvim berdasarkan OS
+date: 2024-08-12
+published: true
+writer: zancc
+---
+
+aku lagi buat konfigurasi neovim pakai lazyVim starter dan aku mau make konfigurasi ini nanti di dualboot laptopku, yaitu di os ubuntu (linux) dan windows 10.
+
+
+<Pre>
+```lua:keymaps.lua
+local function get_terminal_config()
+  local os_name
+  if vim.fn.has("win32") == 1 then
+    os_name = "Windows"
+  elseif vim.fn.has("unix") == 1 then
+    os_name = "Unix"
+  else
+    os_name = "Unknown"
+  end
+
+  if os_name == "Windows" then
+    return "pwsh"
+  elseif os_name == "Unix" then
+    if vim.fn.executable("zsh") == 1 then
+      return { cmd = "zsh" }
+    else
+      return { cmd = "bash" }
+    end
+  else
+    return "bash"
+  end
+end
+
+local terminal_config = get_terminal_config()
+
+if type(terminal_config) == "string" then
+  require("lazyvim.util.terminal").setup(terminal_config)
+elseif type(terminal_config) == "table" then
+  require("lazyvim.util.terminal").setup(terminal_config.cmd, terminal_config.args)
+else
+  vim.notify("Invalid terminal configuration", vim.log.levels.ERROR)
+end
+```
+</Pre>
