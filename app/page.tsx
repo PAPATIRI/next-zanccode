@@ -4,7 +4,7 @@ import { posts, snippets } from "#site/content";
 import Link from "next/link";
 import { PostItem } from "@/components/post-item";
 import { DM_Serif_Display } from "next/font/google";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SnippetItem } from "@/components/snippet-item";
 
 const serifDisplay = DM_Serif_Display({
@@ -33,7 +33,7 @@ export default function Home() {
             className="group flex text-foreground font-bold items-center gap-2 uppercase py-2 w-fit"
           >
             read my problems
-            <ArrowRightIcon
+            <ArrowRight
               size={24}
               className="transition-all duration-500 text-foreground group-hover:ml-2"
             />
