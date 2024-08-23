@@ -104,7 +104,7 @@ selanjutnya di dalam file tersebut kita tambahkan fungsi nvims yang berfungsi un
 fzf yang sudah kita install sebelumnya.
 
 <Pre>
-```shell:Microsoft.PowerShell_profile.ps1
+```shell:Microsoft.PowerShell_profile.ps1 showLineNumbers
 function nvims {
     $items = @("default", "nvim-lazyvim")
     $config = $items | fzf --prompt="Neovim Config" --height=50% --layout=reverse --border
