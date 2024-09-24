@@ -11,7 +11,7 @@ const serifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "tags",
+  title: "zanccode | tags",
   description: "Topic I've Written About",
 };
 export default async function TagsPage() {

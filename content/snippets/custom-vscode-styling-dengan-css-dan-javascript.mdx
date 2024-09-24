@@ -1,0 +1,343 @@
+---
+title: kustomisasi tampilan vscode dengan custom css dan javascript
+description: kustomisasi vs code dengan plugin css and js loader
+date: 2024-09-12
+published: true
+writer: zancc
+---
+
+
+<Pre>
+```css:custom-css.css showLineNumbers
+
+/* Command palette text input */
+.quick-input-filter .monaco-inputbox {
+  border-radius: 12px !important;
+  padding: 8px !important;
+  border: none !important;
+  font-size: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+#command-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .15);
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+}
+
+/* Command palette's input box placeholder. */
+.monaco-inputbox input::placeholder {
+  color: rgba(255, 255, 255, .3) !important;
+}
+
+
+/* Container that holds the VS Code home icon. */
+.editor-group-watermark {
+  max-width: none !important;
+}
+
+.command-center-center {
+  width: auto !important;
+}
+
+.line-numbers {
+  position: relative !important;
+  width: 15px !important;
+  font-size: 12px !important;
+  opacity: .5;
+}
+
+/* Code canvas top shadow */
+.monaco-editor .scroll-decoration {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, .75) !important;
+  top: -6px !important;
+}
+
+/* Toolbars when tabs are enabled. */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .editor-actions {
+  display: none !important;
+}
+
+/* Side bar */
+.part.sidebar {
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, .25);
+}
+
+/* File Explorer Selected Item */
+.monaco-list.list_id_1 .monaco-list-row.selected {
+  opacity: 1 !important;
+}
+
+/* List item label name */
+.monaco-list.list_id_1 .monaco-list-row.selected .label-name {
+  opacity: 1 !important;
+}
+
+/* File explorer action buttons */
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+  display: none;
+}
+
+/* File Explorer Item Label */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row .monaco-icon-label .label-name {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Sidebar top shadow */
+.monaco-scrollable-element>.shadow.top {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .75) !important;
+  top: -3px !important;
+}
+
+/* Sidebar title */
+.composite.title {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+.composite.title h2 {
+  font-weight: bold !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+}
+
+.composite.title h2::before {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 1.1rem;
+  content: '🚀';
+}
+
+/* Scroll Bar */
+.slider {
+  position: absolute !important;
+  right: 1px !important;
+  width: 1px !important;
+  left: auto !important;
+}
+
+.codicon-toolbar-more,
+.codicon-word-wrap {
+  display: block !important;
+}
+
+/* Tooltip box style */
+.monaco-editor-hover,
+.monaco-hover {
+  padding: 10px !important;
+  backdrop-filter: blur(3px) !important;
+  border-radius: 8px !important;
+}
+
+/* Project title's style at the top. */
+.monaco-workbench .part.titlebar>.titlebar-container>.titlebar-center>.window-title>.command-center .action-item.command-center-center {
+  border: none !important;
+  background: transparent !important;
+}
+
+.titlebar-container>.titlebar-center>.window-title {
+  display: hidden !important;
+  opacity: 0 !important;
+}
+
+.titlebar-left>.window-appicon {
+  visibility: hidden !important;
+}
+
+.titlebar-left>.window-appicon::after {
+  content: "🐼";
+  visibility: visible !important;
+  position: absolute;
+  /* right: -1.2em; */
+  left: 10px;
+  z-index: 999;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+/* Project Title */
+.titlebar-left {
+  justify-content: flex-start !important;
+  flex-grow: 0 !important;
+  width: auto !important;
+}
+
+/* Search Label */
+.search-label {
+  font-size: 14px !important;
+  display: block;
+}
+
+/* Search icon */
+.search-icon {
+  display: none !important;
+}
+
+.codicon-search::before {
+  display: none !important;
+}
+
+.codicon-arrow-right,
+.codicon-arrow-left {
+  display: none !important;
+}
+
+.titlebar-right>* {
+  display: none !important;
+}
+
+/* Command Palette */
+.quick-input-widget {
+  transform: translateY(-50%) !important;
+  top: 50% !important;
+  /* box-shadow: 0px 8px 20px rgba(0, 0, 0, .45) !important; */
+  padding: 10px 10px 18px 10px !important;
+  /* backdrop-filter: blur(3px) !important; */
+  border-radius: 8px !important;
+}
+
+
+/* Remove background for lists */
+.monaco-list-rows {
+  background: transparent !important;
+}
+
+/* List hover */
+.monaco-list-row:hover {
+  background: rgba(0, 0, 0, .2) !important;
+}
+
+.notifications-toasts .monaco-list-row:hover {
+  background: none !important;
+}
+
+/* Command palette text input */
+.quick-input-filter .monaco-inputbox {
+  border-radius: 12px !important;
+  padding: 8px !important;
+  border: none !important;
+  font-size: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+#command-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .15);
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+}
+
+/* Command palette's input box placeholder. */
+.monaco-inputbox input::placeholder {
+  color: rgba(255, 255, 255, .3) !important;
+}
+
+.editor-group-watermark {
+  max-width: none !important;
+}
+
+.command-center-center {
+  width: auto !important;
+}
+
+
+```
+</Pre>
+
+<Pre>
+```js:custom-js.js showLineNumbers
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkElement = setInterval(() => {
+        const commandDialog = document.querySelector(".quick-input-widget");
+        if (commandDialog) {
+            // Apply the blur effect immediately if the command dialog is visible
+            if (commandDialog.style.display !== "none") {
+                runMyScript();
+            }
+            // Create an DOM observer to 'listen' for changes in element's attribute.
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                        if (commandDialog.style.display === 'none') {
+                            handleEscape();
+                        } else {
+                            // If the .quick-input-widget element (command palette) is in the DOM
+                            // but no inline style display: none, show the backdrop blur.
+                            runMyScript();
+                        }
+                    }
+                });
+            });
+
+            observer.observe(commandDialog, { attributes: true });
+
+            // Clear the interval once the observer is set
+            clearInterval(checkElement);
+        } else {
+            console.log("Command dialog not found yet. Retrying...");
+        }
+    }, 500); // Check every 500ms
+
+    // Execute when command palette was launched.
+    document.addEventListener('keydown', function (event) {
+        if ((event.metaKey || event.ctrlKey) && event.key === 'p') {
+            event.preventDefault();
+            runMyScript();
+        } else if (event.key === 'Escape' || event.key === 'Esc') {
+            event.preventDefault();
+            handleEscape();
+        }
+    });
+
+    // Ensure the escape key event listener is at the document level
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+            handleEscape();
+        }
+    }, true);
+
+    function runMyScript() {
+        const targetDiv = document.querySelector(".monaco-workbench");
+
+        // Remove existing element if it already exists
+        const existingElement = document.getElementById("command-blur");
+        if (existingElement) {
+            existingElement.remove();
+        }
+
+        // Create and configure the new element
+        const newElement = document.createElement("div");
+        newElement.setAttribute('id', 'command-blur');
+
+        newElement.addEventListener('click', function () {
+            newElement.remove();
+        });
+
+        // Append the new element as a child of the targetDiv
+        targetDiv.appendChild(newElement);
+    }
+
+    // Remove the backdrop blur from the DOM when esc key is pressed.
+    function handleEscape() {
+        const element = document.getElementById("command-blur");
+        if (element) {
+            element.click();
+        }
+    }
+});
+
+  ```
+  </Pre>
