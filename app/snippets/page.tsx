@@ -46,9 +46,6 @@ export default function SnippetPage({ searchParams }: SnippetPageProps) {
           >
             Snippets.
           </h1>
-          <p className="text-xl sm:text-2xl mt-4 text-muted-foreground">
-            A collection of snippets for solving common problems that i often forget about
-          </p>
         </div>
       </div>
       {displayPosts?.length > 0 ? (

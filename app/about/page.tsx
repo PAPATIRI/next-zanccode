@@ -88,16 +88,7 @@ export default async function AboutPage() {
             mulia&quot; dayummmmmm so gewd my name, thnx ayahanda dan ibunda
             koeh.
           </p>
-          <p className="text-muted-foreground text-base py-2">
-            senang menyesatkan diri belajar hal baru di dunia programming atau
-            software development. membangun banyak side project tapi tidak di
-            selesaikan. detective conan fans meskipun masih belum lanjut
-            marathon sejak di episode 1033. ini website personal blog ke 4 saya.
-            website personal blog pertama dibangun dengan wordpress, kemudian
-            yang ke dua dibangun dengan nextjs 10, kemudian yang ke tiga
-            dibangun dengan laravel, dan website personal blog terbaru ini
-            dibangun dengan nextjs 14
-          </p>
+          <p className="text-muted-foreground text-base py-2">blog ini saya dedikasikan untuk diri saya sendiri tentunya. seperti kata para ulama yang berbunyi <b>&quot;ilmu itu ibarat binatang buruan, dan tulisan adalah tali pengikatnya. maka ikatlah binatang buruan tersebut dengan tali yang kuat dan kokoh</b>. sehingga kedepannya saya harap tulisan tulisan saya dapat bermanfaat untuk diri saya sendiri sebagai pengikat terhadap ilmu-ilmu yang saya pelajari dan menjadi pengingat pastinya karena manusia tempatnya lupa.</p>
           <p className="text-muted-foreground text-base py-2">
             senang mengenal anda saudara/i ku, semoga kita bertemu di surga
             nanti 😎

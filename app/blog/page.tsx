@@ -51,14 +51,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           >
             Blog.
           </h1>
-          <p className="text-xl sm:text-2xl mt-4 text-muted-foreground">
-            A collection of problems that I have recorded for the benefit of the
-            people in the future so that the world will remember my existence in
-            this world forever.
-          </p>
         </div>
       </div>
-      <div className="grid grid-cols-12 gap-3 mt-8">
+      <div className="grid grid-cols-12 gap-4 mt-8">
         <div className="col-span-12 col-start-1 sm:col-span-8">
           {displayPosts?.length > 0 ? (
             <ul className="flex flex-col">

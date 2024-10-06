@@ -6,11 +6,16 @@ published: true
 writer: zancc
 ---
 
+customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) sehingga workflow di vs code lebih sing sing sing
 
 <Pre>
 ```json:keybindings.json showLineNumbers
-  // Place your key bindings in this file to override the defaults
 [
+  {
+    "key": "ctrl+shift+r",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  },
   {
     "key": "ctrl+shift+z",
     "command": "workbench.action.toggleActivityBarVisibility"
@@ -18,6 +23,40 @@ writer: zancc
   {
     "key": "ctrl+alt+s",
     "command": "workbench.action.openSettings"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    // Special case: when in first editor group (pane), go to sidebar
+    // if visible.
+    "key": "ctrl+h",
+    "command": "workbench.explorer.fileView.focus",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && activeEditorGroupIndex == 1 && explorerViewletVisible"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    // Special case: when in file explorer, go right (back to 1st open
+    // editor group)
+    "key": "ctrl+l",
+    "command": "workbench.action.focusFirstEditorGroup",
+    "when": "filesExplorerFocus"
   },
   // terminal action
   {
@@ -27,6 +66,11 @@ writer: zancc
   },
   {
     "key": "ctrl+shift+t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+shift+.",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
   },
@@ -118,9 +162,165 @@ writer: zancc
     "key": "ctrl+`",
     "command": "-workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "-workbench.action.reopenClosedEditor"
+  },
+  {
+    "key": "alt+m",
+    "command": "workbench.action.toggleMenuBar"
   }
 ]
 
 ```
 </Pre>
 
+<Pre>
+```json:settings.json showLineNumbers
+  {
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "on",
+  //vim settings
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.leader": "<space>",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/opt/nvim-linux64/bin",
+  "vim.neovimUseConfigFile": true,
+  "vim.neovimConfigPath": "~/.config/nvim-lazyvim",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-d>": false,
+    "<C-p>": false,
+    "<C-b>": false
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.list"]
+    },
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<Tab>"],
+      "commands": [":bnext"]
+    },
+    {
+      "before": ["<S-Tab>"],
+      "commands": [":bprevious"]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": [":bdelete"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.files.action.focusFilesExplorer"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["s", "v"],
+      "commands": ["workbench.action.splitEditorRight"],
+      "when": ["editorFocus"]
+    },
+    {
+      "before": ["s", "h"],
+      "commands": ["workbench.action.splitEditorDown"],
+      "when": ["editorFocus"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["g", "n"],
+      "commands": ["editor.action.addSelectionToNextFindMatch"],
+      "when": ["editorFocus"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.moveSelectionToNextFindMatch"],
+      "when": ["editorFocus"]
+    },
+    {
+      "before": ["g", "p"],
+      "commands": ["editor.action.moveSelectionToPreviousFindMatch"],
+      "when": ["editorFocus"]
+    }
+  ],
+  "editor.linkedEditing": true,
+  "screencastMode.fontSize": 32,
+  "screencastMode.keyboardOverlayTimeout": 500,
+  "screencastMode.keyboardOptions": {
+    "showCommands": false
+  },
+  // custom vs code css and js
+  "vscode_custom_css.imports": [
+    "file:///home/zancc/Documents/CustomVscode/custom-vscode.css",
+    "file:///home/zancc/Documents/CustomVscode/custom-vscode.js"
+  ],
+  "breadcrumbs.enabled": false,
+  "editor.padding.top": 12,
+  "editor.stickyScroll.enabled": false,
+  "editor.fontSize": 13,
+  "editor.lineHeight": 22,
+  "workbench.tree.enableStickyScroll": false,
+  "vim.foldfix": true,
+  "workbench.activityBar.location": "hidden",
+  "window.menuBarVisibility": "toggle",
+  "editor.lineNumbers": "relative"
+}
+```
+</Pre>

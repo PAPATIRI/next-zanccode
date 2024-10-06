@@ -14,7 +14,7 @@ export function Tag({ tag, current, count }: TagProps) {
       href={`/tags/${slug(tag)}`}
       className={badgeVariants({
         variant: current ? "default" : "secondary",
-        className: "no-underline rounded-sm py-1.5 px-4",
+        className: "no-underline rounded-sm py-1 px-4",
       })}
     >
       {tag} {count ? `(${count})` : null}

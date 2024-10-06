@@ -18,17 +18,17 @@ export function PostItem({
   tags,
 }: PostItemProps) {
   return (
-    <article className="group flex flex-col gap-2 mb-10 md:mb-16 transition-all ease-in-out duration-500">
+    <article className="group flex flex-col gap-2 mb-8 md:mb-12 transition-all ease-in-out duration-500">
       <div className="mb-2">
-        <h2 className="text-xl md:text-2xl font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
+        <h2 className="text-lg md:text-xl font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
           <Link href={"/" + slug} className="line-clamp-2">
             {title}
           </Link>
         </h2>
       </div>
-      <p className="max-w-none text-muted-foreground mb-1 line-clamp-3">
-        {description}
-      </p>
+      {/* <p className="max-w-none text-muted-foreground mb-1 line-clamp-3"> */}
+      {/*   {description} */}
+      {/* </p> */}
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           {tags?.map((tag) => <Tag tag={tag} key={tag} />)}
