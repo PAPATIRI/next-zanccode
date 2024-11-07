@@ -12,6 +12,11 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
 ```json:keybindings.json showLineNumbers
 [
   {
+    "key": "shift+k",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus && vim.active && !inSnippetMode"
+  },
+  {
     "key": "ctrl+shift+r",
     "command": "editor.action.startFindReplaceAction",
     "when": "editorFocus || editorIsOpen"
@@ -108,7 +113,7 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  // file tree action
+    // file tree action
   {
     "key": "a f",
     "command": "explorer.newFile",
@@ -183,11 +188,11 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
 
 <Pre>
 ```json:settings.json showLineNumbers
-  {
-  "workbench.colorTheme": "Catppuccin Mocha",
+{
+  "workbench.colorTheme": "Nord",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
-  "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'Monaco', 'monospace', monospace",
   "editor.fontLigatures": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -201,15 +206,12 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
   "vim.hlsearch": true,
   "vim.highlightedyank.enable": true,
   "vim.leader": "<space>",
-  "vim.enableNeovim": true,
-  "vim.neovimPath": "/opt/nvim-linux64/bin",
-  "vim.neovimUseConfigFile": true,
-  "vim.neovimConfigPath": "~/.config/nvim-lazyvim",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
     "<C-d>": false,
     "<C-p>": false,
+    "<C-w>": false,
     "<C-b>": false
   },
   "extensions.experimental.affinity": {
@@ -265,6 +267,11 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
+      "key": "K",
+      "command": "editor.action.showHover",
+      "when": "editorTextFocus"
+    },
+    {
       "before": ["s", "v"],
       "commands": ["workbench.action.splitEditorRight"],
       "when": ["editorFocus"]
@@ -308,8 +315,8 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
   },
   // custom vs code css and js
   "vscode_custom_css.imports": [
-    "file:///home/zancc/Documents/CustomVscode/custom-vscode.css",
-    "file:///home/zancc/Documents/CustomVscode/custom-vscode.js"
+    "file:///C:/Users/syari/Documents/VSCodeCustom/custom-vscode.css",
+    "file:///C:/Users/syari/Documents/VSCodeCustom/custom-vscode.js"
   ],
   "breadcrumbs.enabled": false,
   "editor.padding.top": 12,
@@ -320,7 +327,14 @@ customisasi shorcuts vs code di kombinasikan dengan [plugin vim](https://marketp
   "vim.foldfix": true,
   "workbench.activityBar.location": "hidden",
   "window.menuBarVisibility": "toggle",
-  "editor.lineNumbers": "relative"
+  "editor.lineNumbers": "relative",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  }
 }
+
 ```
 </Pre>

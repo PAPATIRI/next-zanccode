@@ -10,7 +10,47 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
 
 <Pre>
 ```css:custom-vscode.css showLineNumbers
- /* Command palette text input */
+
+  /*tab size styling*/
+.tabs-container,
+.tab,
+.tab .monaco-icon-label,
+.tab .monaco-icon-label-container,
+.tab .monaco-icon-name-container {
+  height: 26px !important;
+}
+
+.tab .monaco-icon-label-container .label-name {
+  font-size: 11px !important;
+  height: 26px !important;
+  letter-spacing: 1px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 10px !important;
+}
+
+.tab .monaco-icon-label::before {
+  height: 26px !important;
+}
+
+.tab .monaco-icon-label::after {
+  visibility: hidden !important;
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.tab-actions,
+.tab-actions .monaco-action-bar {
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+/* Command palette text input */
 .quick-input-filter .monaco-inputbox {
   border-radius: 12px !important;
   padding: 8px !important;
@@ -34,7 +74,45 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
   color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Container that holds the VS Code home icon. */
+/* homescreen vs code when there is no file opened*/
+.menubar {
+  margin-left: 50px !important;
+}
+
+.editor-group-watermark > .shortcuts {
+  width: 100vw !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+.letterpress {
+  height: 50px !important;
+  margin-bottom: 10px !important;
+  width: auto !important;
+  visibility: hidden !important;
+}
+
+.watermark-box {
+  top: -200px !important;
+  background: transparent !important;
+}
+
+.watermark-box::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -80px;
+  content: "zanccode";
+  text-align: center;
+  font-size: 95px;
+  font-weight: bold;
+  font-style: italic;
+  color: #d8dee9;
+  margin: auto 0 !important;
+}
+  /* Container that holds the VS Code home icon. */
 .editor-group-watermark {
   max-width: none !important;
 }
@@ -47,7 +125,7 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
   position: relative !important;
   width: 15px !important;
   font-size: 11px !important;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 /* Code canvas top shadow */
@@ -123,14 +201,14 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
   font-weight: bold !important;
   text-transform: uppercase;
   font-size: 14px;
-  content: "Zancc The";
+  content: "zancc's ";
 }
 
 .composite.title h2::after {
   display: inline-block;
   margin-left: 8px;
   font-size: 15px;
-  content: "🫦";
+  content: " 🔥";
 }
 
 /* Scroll Bar */
@@ -176,11 +254,15 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
 }
 
 .titlebar-left > .window-appicon::after {
-  content: "🐼";
+  /* content: "🐼"; */
+  content: "zancc";
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 500;
+  color: #d8dee9;
   visibility: visible !important;
   position: absolute;
-  /* right: -1.2em; */
-  left: 10px;
+  left: 20px;
   z-index: 999;
   top: 50%;
   transform: translateY(-50%);
@@ -224,16 +306,24 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
   top: 25% !important;
   padding: 10px 10px 18px 10px !important;
   border-radius: 8px !important;
+  background-image: url("https://kpopping.com/documents/bf/1/1536/220821-NewJeans-Minji-documents-8.jpeg?v=95233") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.quick-input-titlebar {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 /* Remove background for lists */
 .monaco-list-rows {
   background: transparent !important;
-}
-
-/* List hover */
-.monaco-list-row:hover {
-  background: rgba(0, 0, 0, 0.2) !important;
 }
 
 .notifications-toasts .monaco-list-row:hover {
@@ -270,7 +360,8 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
 
 .command-center-center {
   width: auto !important;
-} 
+}
+
 ```
 </Pre>
 
