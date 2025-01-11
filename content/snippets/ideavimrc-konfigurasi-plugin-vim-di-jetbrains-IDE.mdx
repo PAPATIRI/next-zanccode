@@ -1,0 +1,69 @@
+---
+title: konfigurasi plugin vim ideavim untuk IDE jetbrains
+description: apapun teks editor, kode editor, IDE nya tetap kalau ada plugin untuk menggunakan vim mode maka harus di install
+date: 2025-01-12
+published: true
+writer: zancc
+---
+
+buat file `.ideavimrc` dan letakan di root home directory (linux atau windows harusnya sama). dan install plugin ideavim di jetbrains IDE jangan lupa.
+
+<Pre>
+```json:.ideavimrc showLineNumbers
+let mapleader=" "
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set textobj-entire
+set ReplaceWithRegister
+set NERDTree
+set quickscope
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+sethandler <leader>e a:vim
+
+""" Common settings -------------------------
+set scrolloff=5
+set showmode
+set so=5
+set incsearch
+set nu
+set relativenumber
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+map <leader>fe :NERDTreeToggle<CR>
+map <leader>ff :NERDTreeFind<CR>
+map <leader>fn :NERDTree<CR>
+
+map <leader>cd <Action>(Debug)
+map <leader>cr <Action>(RenameElement)
+map <leader>cc <Action>(Stop)
+
+" map <leader>s <Action>(SelectInProjectView)
+" map <leader>a <Action>(Annotate)
+" map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+" map <S-Space> <Action>(GotoNextError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+
+"keymap
+imap jj <Esc> 
+imap jk <Esc> 
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
+nnoremap <leader>bd :bdelete<CR>
+nnoremap <C-l> :bnext<CR>
+nnoremap <C-h> :bprev<CR>
+```
+</Pre>

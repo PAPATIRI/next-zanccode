@@ -1,0 +1,37 @@
+---
+title: menghapus dualboot linux di windows
+description: install dualboot sudah repot, uninstall dualboot lebih repot rupanya
+date: 2025-01-12
+tags: ["linux", "windows"]
+published: false
+writer: zancc
+---
+
+# Perkenalan
+
+untuk seorang programmer "rata rata" seperti saya, menggunakan linux belum menjadi main machine war. karena dengan masih adanya hasrat bermain game (terkadang),
+maka menggunakan linux yang berdampingan dengan windows menjadi solusi paling masuk akal.
+dan yup, dualboot sudah menjadi favorit solution beberapa tahun terakhir ini untuk saya.
+
+menginstall dualboot pertama kali sangat merepotkan, apalagi masih asing dengan istilah partisi partisi di linux. dengan semakin seringnya install dualboot semua
+hal tampak lebih mudah, apalagi dengan ekosistem linux yang semakin berkembang juga dan semakin lebih mudah untuk pemula saat melakukan instalasi linux.
+
+tapi hal yang saya kurang perhatikan adalah bagaimana jika saya ingin mengganti linux yang sudah terinstall di komputer saya?
+untuk mengabadikan solusi yang sebenarnya sudah pernah saya lakukan beberapa kali tapi tidak ingat sama sekali karena gk penting tapi ternyata penting.
+
+<Callout type="warning">
+  cara yang akan saya gunakan tidak membutuhkan live usb windows installer
+  seperti alternative cara mengahapus duallbot lainnya. hanya perlu command
+  prompt (cmd) saja.
+</Callout>
+
+# Perhatian!
+
+urutan proses penghapusan dualboot linux adalah:
+
+1. menghapus linux dari efi system, sehingga ketika booting langsung ke windows.
+2. menghapus partisi linux
+
+# menghapus linux dari efi system
+
+pada step ini kita perlu membuka command prompt (cmd) dengan izin sebagai administrator.

@@ -14,7 +14,10 @@ const serifDisplay = DM_Serif_Display({
 });
 
 export default function Home() {
-  const latesPost = sortPosts(posts).slice(0, 3);
+  const latesPost = sortPosts(posts.filter((post) => post.published)).slice(
+    0,
+    3
+  );
   const latesSnippet = sortPosts(snippets).slice(0, 4);
 
   return (
@@ -44,7 +47,7 @@ export default function Home() {
         <h2
           className={cn(
             "text-3xl mb-5 md:mb-10 sm:text-4xl md:text-5xl lg:text-6xl text-center font-serif tracking-wider",
-            serifDisplay.variable,
+            serifDisplay.variable
           )}
         >
           Latest Posts
@@ -67,7 +70,7 @@ export default function Home() {
         <h2
           className={cn(
             "text-3xl mb-5 md:mb-10 sm:text-4xl md:text-5xl lg:text-6xl text-center font-serif tracking-wider",
-            serifDisplay.variable,
+            serifDisplay.variable
           )}
         >
           Latest Snippets
