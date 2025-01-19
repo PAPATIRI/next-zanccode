@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
 import ImageSvg from "@/components/ImageSvg";
-import { LaravelSvg, NextJsSvg, NeovimSvg, VsCodeSvg, TailwindSvg, Bootstrap, BunJsSvg, ExpoGoSvg, ExpoSvg, ExpressJsSvg, FigmaSvg, FirefoxSvg, GithubSvg, NodeJsSvg, PrismaSvg, SupabaseSvg, ViteSvg, WindowsTerminalSvg, XamppSvg, SvelteSVg, MysqlSvg } from "@/public/svg";
+import { LaravelSvg, NextJsSvg, NeovimSvg, VsCodeSvg, TailwindSvg, Bootstrap, ExpoGoSvg, ExpoSvg, ExpressJsSvg, FigmaSvg, GithubSvg, NodeJsSvg, PrismaSvg, SupabaseSvg, ViteSvg, WindowsTerminalSvg, XamppSvg, MysqlSvg, VueSvg, AndroidStudioSvg } from "@/public/svg";
 
 const serifDisplay = DM_Serif_Display({
   weight: "400",
@@ -35,17 +35,16 @@ export default function ToolsPage() {
         <ImageSvg source={LaravelSvg} />
         <ImageSvg source={MysqlSvg} />
         <ImageSvg source={NextJsSvg} />
+        <ImageSvg source={VueSvg} />
         <ImageSvg source={NeovimSvg} />
-        <ImageSvg source={SvelteSVg} />
         <ImageSvg source={VsCodeSvg} />
+        <ImageSvg source={AndroidStudioSvg} />
         <ImageSvg source={TailwindSvg} />
         <ImageSvg source={Bootstrap} />
-        <ImageSvg source={BunJsSvg} />
         <ImageSvg source={ExpoGoSvg} />
         <ImageSvg source={ExpoSvg} />
         <ImageSvg source={ExpressJsSvg} />
         <ImageSvg source={FigmaSvg} />
-        <ImageSvg source={FirefoxSvg} />
         <ImageSvg source={GithubSvg} />
         <ImageSvg source={NodeJsSvg} />
         <ImageSvg source={PrismaSvg} />

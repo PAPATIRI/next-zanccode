@@ -1,0 +1,86 @@
+---
+title: konfigurasi tmux di ubuntu yang tampan dan berkharisma
+description: konfigurasi tmux dengan theme catppuccin dan rebinding shortcut tmux
+date: 2025-01-20
+published: true
+writer: zancc
+---
+
+file konfigurasi tmux berada di `~/.tmux.conf`.
+
+<Pre>
+```shell:.tmux.conf showLineNumbers
+#set the prefix from C-b to C-b
+set -g prefix C-a
+#free the original C-b prefix
+unbind C-b
+#set the delay between prefix & command
+set -s escape-time 1
+#set tha base index for windows to 1 instead of 0
+set -g base-index 1
+#set tha base index for pane to 1 instead of 0
+setw -g pane-base-index 1
+
+# customize keybinding
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# sending the prefix to other app (nvim/vim maybe?)
+bind C-a send-prefix
+
+# spliting panes
+bind | split-window -h
+bind - split-window -v
+
+#moving between panes with hjkl
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# quick window selection with C-h / C-l
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
+# resizing pane
+bind H resize-pane -L 5
+bind J resize-pane -D 5
+bind K resize-pane -U 5
+bind L resize-pane -R 5
+
+# handling the mouse
+set -g mouse on
+
+# setting status line
+set -g status-position top
+
+# automatically renumber the window index if one of them being deleted
+set -g renumber-windows on
+
+# Configure the catppuccin plugin
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+
+# make the window name show it's name instead of username of the system
+set -g @catppuccin_window_default_text "#W"
+set -g @catppuccin_window_current_text "#W"
+
+# Make the status line pretty and add some modules
+set -g status-right-length 100
+set -g status-left-length 100
+set -g status-left ""
+set -g status-right "#{E:@catppuccin_status_application}"
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -ag status-right "#{E:@catppuccin_status_session}"
+set -agF status-right "#{E:@catppuccin_status_battery}"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'catppuccin/tmux#v2.1.2'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+```
+</Pre>
