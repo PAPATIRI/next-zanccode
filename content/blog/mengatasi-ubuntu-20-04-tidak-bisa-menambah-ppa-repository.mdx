@@ -1,0 +1,138 @@
+---
+title: mengatasi ubuntu 20.04 tidak bisa menambahkan ppa repository
+description: menambah ppa repository sudah jadi hal biasa ketika kita ingin menginstall aplikasi tertentu di ubuntu, jika tidak bisa menambah ppa repository maka pusing pala berbi
+date: 2025-02-01
+tags: ["linux", "fixed"]
+published: true
+writer: zancc
+---
+
+# Perkenalan
+
+di suatu malam minggu yang damai saya tiba-tiba ingin mensetup laravel development di local machine saya yaitu ubuntu 24.04. dan salah satu isu adalah saya butuh multiple php version karena beberapa project saya masih menggunakan laravel 9 sedangkan versi laravel terbaru saat post ini dibuat adalah sudah versi 11.
+
+ketika googling bagaimana saya mensetup php multiple version di ubuntu saya menemukan kendala di step awal sebelum menginstall php ke komputer saya. yup menambah ppa repository milik mamang ondrej selalu gagal. pesan gagal nya memusingkan.
+
+```shell
+sudo add-apt-repository ppa:ondrej/php -y
+```
+
+command di atas lama sekali memberikan respon dan ketika saya force stop dengan ctrl+c responnya terdapat traceback error.
+
+```shell
+Traceback (most recent call last):
+  File "/usr/bin/add-apt-repository", line 452, in <module>
+    sys.exit(0 if addaptrepo.main() else 1)
+                  ^^^^^^^^^^^^^^^^^
+  File "/usr/bin/add-apt-repository", line 435, in main
+    shortcut = handler(source, **shortcut_params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/softwareproperties/shortcuts.py", line 40, in shortcut_handler
+  ...
+```
+
+sebenarnya masih panjang ke bawah lagi pesannya. sudah melakukan berbagai cara yang tersedia di ubuntu stack, ask ubuntu, stackoverflow dan website lainnya masih belum juga menemukan solusi yang menyembuhkan penyakit ini.
+akhirnya saya memutuskan untuk menanyakan pada yang mulia AI claude dan akhirnya masalah saya teratasi. kurang tau step mana yang menyembuhkan penyakit gagal menambahkan ppa repository ini tapi saya coba tuliskan step step yang telah saya lakukan.
+
+<Callout type="warning">
+  sebenarnya saya bisa saja langsung bertanya pada AI, tapi harga diri saya
+  merasa perlu berusaha menjelajah forum forum untuk menguatkan tali silaturahmi
+  kita sebagai manusia. tehe.
+</Callout>
+
+# eksekusi!
+
+pertama kali saya melakukan ping ke launchpad.net karena saya ingin menambahkan ppa repository dari situ.
+
+```shell
+ping launchpad.net
+```
+
+dan hasilnya banyak packet loss dengan pesannya `11 packets transmitted, 0 received, 100% packet loss, time 10258ms`.
+
+selanjutnya saya mengedit file resolv.conf di folder etc.
+
+```shell
+sudo nano /etc/resolv.conf
+```
+
+full file default nya tampak seperti ini.
+
+```shell
+# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# ... ditengah ini gk penting saya hapus buat hemat space
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search .
+~
+```
+
+dan menambahkan pada baris paling atas dari file tersebut.
+
+```shell
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+kemudian mengecek status firewall di komputer, jika aktif maka di nonaktifkan. jika sudah inactive maka biarkan
+
+```shell
+sudo ufw status
+```
+
+```shell
+sudo ufw disable
+```
+
+kemudian meng-disable IPv6 secara temporary siapa tau ini menolong. (siapa tau? ya itu kata claude AI nya)
+
+```shell
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+```
+
+selanjutnya mencoba dns lookup mengecek apakah domain launchpad.net itu merespon
+
+```shell
+nslookup launchpad.net
+```
+
+hasilnya seperti di bawah saya kurang paham juga, hehe. yang pasti server yang kita tambahkan di file resolv.conf yaitu nameserver 8.8.8.8 ada di respon command nslookup.
+
+```shell
+Server:        8.8.8.8
+Address:    8.8.8.8#53
+Non-authoritative answer:
+Name:    launchpad.net
+Address: 185.125.189.223
+Name:    launchpad.net
+Address: 185.125.189.222
+Name:    launchpad.net
+Address: 2620:2d:4000:1009::f3
+Name:    launchpad.net
+Address: 2620:2d:4000:1009::3ba
+```
+
+dan setelah melakukan beberapa langkah di atas saya coba menambahkan ppa repository berhasil ternyata.
+
+# note!
+
+setelah melakukan step di atas saya melakukan proses penambahan ppa repository. kemudian karena penasarn saya coba mengecek file resolv.conf yang sudah saya ubah. dan hasilnya kode `nameserver 8.8.8.8` yang saya tambahkan hilang.
+
+dan ketika saya melakukan command `nslookup launchpad.net` pun responnya berbeda, yang tadinya server dan address nya menggunakan 8.8.8.8, sekarang sudah seperti kembali ke default yaitu 127.0.0.xx.
+
+cukup membingungkan sebenarnya, apalagi saya hanya pengguna casual linux ubuntu bukan nerd yang paham seluk beluk ubuntu. tapi apapun itu yang penting saya sudah bisa menambahkan ppa repository lagi.
+
+# selesai
+
+cukup sekian bagaimana saya menyembuhkan penyakit ubuntu saya tidak bisa menambahkan ppa repository. kenapa saya bilang penyakit?.
+ini karena sebelumnya saya sudah memfix problem ini tapi saya lupa apa solusinya karena saya pakai berbagai cara dan tiba tiba bener aja.
+tapi setelah update ubuntu yang lumayan besar (sekitar 600mb, ini karena ada chrome anjer), tiba-tiba saya tidak bisa menambahkan ppa repository saya.
+
+ADIOS!!!
