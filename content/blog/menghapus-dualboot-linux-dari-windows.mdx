@@ -45,71 +45,92 @@ urutan dari 2 cara di atas tidak masalah mana yang mau didahulukan. yang penting
 step ini dilakukan untuk menghilangkan linux dari daftar UEFI sehingga akan langsung masuk ke windows ketika booting tanpa menampilkan grub linux.
 buka cmd (command prompt) sebagai administrator dan ketikan command di bawah untuk melihat daftar dan memastikan ada tidak nya firmware boot linux.
 
-```shell
+<Pre>
+```shell:check-firmware
 bcdedit /enum firmware
 ```
+</Pre>
 
 akan tampil daftar firmware, kita pilih yang jelas milik linux dan copy saja identifier dari firmware boot linux nya. kemudian hapus firmware tersebut.
 
-```shell
+<Pre>
+```shell:delete-firmware
 bcdedit /delete {identifier}
 ```
+</Pre>
 
 bisa menggunakan command /enum sebelumnya untuk melihat apakah sudah benar benar terhapus firmware boot linux nya.
 selanjutnya kita akan menghapus entry linux di UEFI, kita akan menggunakan diskpart di cmd.
 
-```shell
+<Pre>
+```shell:open-diskpart
 diskpart
 ```
+</Pre>
 
 selanjutnya menampilkan daftar volume di storage.
 
-```shell
+<Pre>
+```shell:list-all-volumes
 list vol
 ```
+</Pre>
 
 ketika daftar volume telah tampil kita akan memilih satu volume yang berisi data UEFI. biasanya volume ini bertipe `FAT32` dan info nya adalah `system`.
 
-```shell
+<Pre>
+```shell:select-volume
 sel vol 1
 ```
+</Pre>
 
 setelah memilih volume dengan command di atas, kita akan memberikan huruf sebagai tanda yang akan kita gunakan untuk membuka volume tersebut. huruf yang digunakan bisa apa saja.
-
-```shell
+<Pre>
+```shell:assign-letter
 assign letter=Z
 ```
+</Pre>
 
 setelah memberikan huruf sebagai tanda selanjutnya keluar dari diskpart dengan command exit.
 
-```shell
+<Pre>
+```shell:exit-diskpart
 exit
 ```
+</Pre>
 
 setelah kembali ke cmd kita akan menuju ke volume yang kita beri tanda huruf tadi (Z di contoh ini). di situ kita akan menghapus entry ubuntu dari UEFI.
 kita cukup memanggil huruf tersebut dan diikuti tanda 2 titik.
 
-```shell
+<Pre>
+```shell:open-volume
 Z:
 ```
+</Pre>
 
 cek daftar folder di volume Z dengan perintah dir
 
-```shell
+<Pre>
+```shell:list-directory
 dir
 ```
+</Pre>
 
 jika terdapat folder efi maka kita akan masuk ke folder tersebut dengan perintah cd (call directory)
 
-```shell
+<Pre>
+```shell:enter-EFI-diretory
 cd EFI
 ```
+</Pre>
 
 selanjutnya kita gunakan command dir lagi untuk melihat daftar folder dan file di dalamnya. biasanya terdapat folder Microsoft, Boot, dan linux distro yang akan kita hapus (kasus saya ubuntu). dan linux distro yang terdapat di dalam folder EFI ini lah yang akan kita hapus.
 
-```shell
+<Pre>
+```shell:delete-diretory
 rd ubuntu /s
 ```
+</Pre>
 
 perintah di atas akan menghapus folder ubuntu dan akan menampilkan form konfirmasi, ketikan saja Y untuk yes atau setuju.
 proses selesai setelah kita menghapus folder linux di dalam folder EFI ini. kita bisa menutup cmd dan lanjut pada langkah selanjutnya.
@@ -119,7 +140,7 @@ proses selesai setelah kita menghapus folder linux di dalam folder EFI ini. kita
 langkah ini mudah hanya saja harus teliti agar tidak salah menghapus partisi yang berisi data kita di windows. di pencarian windows cari `create and format hard disk partitions`.
 pilih partisi linux kemudian klik kanan dan delete volume.
 
-# selesai
+# penutup
 
 setelah proses di atas selesai selanjutnya bisa langsung restart komputer, dan harusnya bisa langsung masuk ke windows tanpa membuka grub linux.
 
