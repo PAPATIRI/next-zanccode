@@ -2,10 +2,12 @@ import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
+import { badgeVariants } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn, getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
+import Link from "next/link";
 
 const serifDisplay = DM_Serif_Display({
   weight: "400",
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     "where i write all my problems down clearly so it is half solved",
 };
 
-const POST_PER_PAGE = 5;
+const POST_PER_PAGE = 4;
 interface BlogPageProps {
   searchParams: {
     page?: string;
@@ -33,7 +35,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   const displayPosts = sortedPosts.slice(
     POST_PER_PAGE * (currentPage - 1),
-    POST_PER_PAGE * currentPage,
+    POST_PER_PAGE * currentPage
   );
 
   const tags = getAllTags(posts);
@@ -46,7 +48,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <h1
             className={cn(
               "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
-              serifDisplay.variable,
+              serifDisplay.variable
             )}
           >
             Blog.
@@ -56,7 +58,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="grid grid-cols-12 gap-4 mt-8">
         <div className="col-span-12 col-start-1 sm:col-span-8">
           {displayPosts?.length > 0 ? (
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-6">
               {displayPosts.map((post) => {
                 const { title, slug, tags, description, date } = post;
                 return (
@@ -81,13 +83,21 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               className=" justify-end mt-8"
             />
           }
-
         </div>
         <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
           <CardHeader>
             <CardTitle>Tags</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
+            <Link
+              href={`/blog`}
+              className={badgeVariants({
+                variant: "default",
+                className: "no-underline rounded-sm py-1 px-4",
+              })}
+            >
+              All
+            </Link>
             {sortedTags?.map((tag) => (
               <Tag tag={tag} key={tag} count={tags[tag]} />
             ))}

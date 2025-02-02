@@ -6,6 +6,8 @@ import { Tag } from "@/components/tag";
 import { slug } from "github-slugger";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
+import Link from "next/link";
+import { badgeVariants } from "@/components/ui/badge";
 
 const serifDisplay = DM_Serif_Display({
   weight: "400",
@@ -54,7 +56,7 @@ export default function TagPage({ params }: TagPageProps) {
               serifDisplay.variable
             )}
           >
-            {title}.
+            Blog {title}.
           </h1>
         </div>
       </div>
@@ -86,6 +88,15 @@ export default function TagPage({ params }: TagPageProps) {
             <CardTitle>Tags</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
+            <Link
+              href={`/blog`}
+              className={badgeVariants({
+                variant: tag === "" ? "default" : "secondary",
+                className: "no-underline rounded-sm py-1 px-4",
+              })}
+            >
+              All
+            </Link>
             {sortedTags?.map((t) => (
               <Tag tag={t} key={t} count={tags[t]} current={slug(t) === tag} />
             ))}
