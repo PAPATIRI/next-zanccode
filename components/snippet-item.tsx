@@ -5,7 +5,7 @@ interface SnippetItemProps {
   slug: string;
   title: string;
   description?: string;
-  date: string;
+  date?: string;
 }
 
 export function SnippetItem({ title, slug, date }: SnippetItemProps) {
@@ -21,7 +21,7 @@ export function SnippetItem({ title, slug, date }: SnippetItemProps) {
         <dt className="sr-only">Published On</dt>
         <dd className="text-sm text-muted-foreground font-medium flex items-center gap-1">
           <time dateTime="date" className="text-muted-foreground">
-            {formatDate(date)}
+            {date && formatDate(date)}
           </time>
         </dd>
       </dl>
