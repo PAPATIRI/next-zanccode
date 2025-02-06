@@ -14,7 +14,7 @@ export function SnippetItem({ title, slug, date }: SnippetItemProps) {
       href={"/" + slug}
       className="group flex flex-col dark:to-muted/50 p-6 rounded-md transition-all duration-300 border border-transparent hover:border-accent-foreground/20"
     >
-      <h2 className="text-md md:text-xl mb-4 capitalize font-sans font-medium text-primary line-clamp-2">
+      <h2 className="text-md md:text-xl mb-4 capitalize font-sans font-medium text-slate-600 dark:text-slate-300 line-clamp-2">
         {title}
       </h2>
       <dl>

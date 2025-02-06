@@ -41,7 +41,7 @@ export default function SnippetPage({ searchParams }: SnippetPageProps) {
         <div className="flex-1 space-y-4">
           <h1
             className={cn(
-              "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
+              "inline-block text-slate-600 dark:text-slate-300 font-serif text-4xl lg:text-5xl tracking-wider",
               serifDisplay.variable
             )}
           >

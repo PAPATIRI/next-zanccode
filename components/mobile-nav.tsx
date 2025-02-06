@@ -46,8 +46,8 @@ export function MobileNav() {
           <MobileLink href={"/snippets"} onOpenChange={setOpen}>
             Snippets
           </MobileLink>
-          <MobileLink href={"/tags"} onOpenChange={setOpen}>
-            Tags
+          <MobileLink href={"/colletions"} onOpenChange={setOpen}>
+            Collections
           </MobileLink>
           <MobileLink href={"/tools"} onOpenChange={setOpen}>
             Tools

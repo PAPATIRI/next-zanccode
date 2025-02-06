@@ -25,6 +25,57 @@ export function sortPosts(posts: Array<Post>) {
   });
 }
 
+export function getAllSeries(posts: Array<Post>) {
+  const allSeries: Record<string, number> = {}
+
+  posts.forEach((post) => {
+    post.series?.forEach((series) => {
+      allSeries[series] = (allSeries[series] ?? 0) + 1;
+    })
+  })
+
+  return allSeries;
+}
+
+export function sortAllSeriesByDate(posts: Array<Post>) {
+  const allSeries: Record<string, { count: number; latestDate: string }> = {};
+
+  posts.forEach(post => {
+    const { series, date } = post
+    if (!series || series.length === 0) return
+
+    series.forEach(seriesName => {
+      if (!allSeries[seriesName]) {
+        allSeries[seriesName] = { count: 0, latestDate: date }
+      }
+
+      allSeries[seriesName].count += 1;
+
+      //update latestDate jika ada postingan baru
+      if (new Date(date) > new Date(allSeries[seriesName].latestDate)) {
+        allSeries[seriesName].latestDate = date
+      }
+    })
+
+  })
+  // Convert object ke array dan sort berdasarkan latestDate terbaru
+  return Object.entries(allSeries)
+    .map(([seriesName, data]) => ({ name: seriesName, ...data }))
+    .sort((a, b) => new Date(b.latestDate).getTime() - new Date(a.latestDate).getTime());
+
+}
+
+export function getPostBySeriesSlug(posts: Array<Post>, series: string) {
+  return posts.filter((post) => {
+    if (!post.series) return false;
+
+    const slugifiedSeries = post.series?.map((seriesItem) => slug(seriesItem))
+
+    return slugifiedSeries.includes(series)
+  })
+}
+
+
 export function getAllTags(posts: Array<Post>) {
   const tags: Record<string, number> = {};
 

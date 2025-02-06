@@ -48,22 +48,16 @@ export default function TagPage({ params }: TagPageProps) {
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
-      <div className="flex mb-10 flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 spase-y-4">
-          <h1
-            className={cn(
-              "capitalize inline-block font-serif text-4xl lg:text-5xl tracking-wider",
-              serifDisplay.variable
-            )}
-          >
-            Blog {title}.
-          </h1>
-        </div>
+      <div className="mb-10 md:mb-20 py-4 px-4 rounded border-l-4 border-slate-400">
+        <h1
+          className="capitalize inline-block font-serif text-slate-600 dark:text-slate-300 text-xl lg:text-3xl tracking-wider" >
+          #{title}
+        </h1>
       </div>
-      <div className="grid grid-cols-12 gap-3 mt-8">
-        <div className="col-span-12 col-start-1 sm:col-span-8">
+      <div className="grid grid-cols-12 gap-4 mt-8">
+        <div className="col-span-12 col-start-1 sm:col-span-8 mr-0 sm:mr-6">
           {displayPosts?.length > 0 ? (
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-6">
               {displayPosts.map((post) => {
                 const { title, slug, tags, description, date } = post;
                 return (
@@ -83,11 +77,9 @@ export default function TagPage({ params }: TagPageProps) {
             <p>nothing to see here yet</p>
           )}
         </div>
-        <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
-          <CardHeader>
-            <CardTitle>Tags</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
+        <div className="col-span-12 ml-0 sm:ml-6 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
+          <p className="text-slate-600 dark:text-slate-300 capitalize text-xl font-light mb-4">Tags</p>
+          <div className="flex flex-wrap gap-2">
             <Link
               href={`/blog`}
               className={badgeVariants({
@@ -100,8 +92,8 @@ export default function TagPage({ params }: TagPageProps) {
             {sortedTags?.map((t) => (
               <Tag tag={t} key={t} count={tags[t]} current={slug(t) === tag} />
             ))}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

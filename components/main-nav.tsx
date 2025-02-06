@@ -19,7 +19,7 @@ export function MainNav() {
       <Link href="/" className="mr-6 flex items-center space-x-2">
         <span
           className={cn(
-            "text-xl md:text-3xl font-serif",
+            "text-xl text-slate-700 dark:text-slate-300 md:text-3xl font-serif",
             serifDisplay.variable
           )}
         >
@@ -29,8 +29,8 @@ export function MainNav() {
       <Link
         href="/blog"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/blog" ? "text-foreground" : "text-foreground/60"
+          "text-base font-medium transition-colors hover:text-slate-700 dark:hover:text-slate-100 hidden sm:inline-block",
+          pathName === "/blog" ? "text-slate-700 dark:text-slate-100" : "text-slate-700/70 dark:text-slate-200/70"
         )}
       >
         Blog
@@ -38,24 +38,24 @@ export function MainNav() {
       <Link
         href="/snippets"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/snippets" ? "text-foreground" : "text-foreground/60"
+          "text-base font-medium transition-colors hover:text-slate-700 dark:hover:text-slate-100 hidden sm:inline-block",
+          pathName === "/snippets" ? "text-slate-700 dark:text-slate-100" : "text-slate-700/70 dark:text-slate-200/70"
         )}
       >Snippets</Link>
       <Link
-        href="/tags"
+        href="/collections"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/tags" ? "text-foreground" : "text-foreground/60"
+          "text-base font-medium transition-colors hover:text-slate-700 dark:hover:text-slate-100 hidden sm:inline-block",
+          pathName === "/collections" ? "text-slate-700 dark:text-slate-100" : "text-slate-700/70 dark:text-slate-200/70"
         )}
       >
-        Tags
+        Collections
       </Link>
       <Link
         href="/tools"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/tools" ? "text-foreground" : "text-foreground/60"
+          "text-base font-medium transition-colors hover:text-slate-700 dark:hover:text-slate-100 hidden sm:inline-block",
+          pathName === "/tools" ? "text-slate-700 dark:text-slate-100" : "text-slate-700/70 dark:text-slate-200/70"
         )}
       >
         Tools
@@ -63,8 +63,8 @@ export function MainNav() {
       <Link
         href="/about"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
-          pathName === "/about" ? "text-foreground" : "text-foreground/60"
+          "text-base font-medium transition-colors hover:text-slate-700 dark:hover:text-slate-100 hidden sm:inline-block",
+          pathName === "/about" ? "text-slate-700 dark:text-slate-100" : "text-slate-700/70 dark:text-slate-200/70"
         )}
       >
         About Me

@@ -6,97 +6,98 @@ import rehypeCodeTitles from "rehype-code-titles";
 import { visit } from "unist-util-visit";
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
-    ...data,
-    slugAsParams: data.slug.split("/").slice(1).join("/"),
+  ...data,
+  slugAsParams: data.slug.split("/").slice(1).join("/"),
 });
 
 const posts = defineCollection({
-    name: "Post",
-    pattern: "blog/**/*.mdx",
-    schema: s
-        .object({
-            slug: s.path(),
-            title: s.string().max(99),
-            description: s.string().max(999).optional(),
-            date: s.isodate(),
-            published: s.boolean().default(true),
-            tags: s.array(s.string()).optional(),
-            writer: s.string().max(50),
-            body: s.mdx(),
-        })
-        .transform(computedFields),
+  name: "Post",
+  pattern: "blog/**/*.mdx",
+  schema: s
+    .object({
+      slug: s.path(),
+      title: s.string().max(99),
+      description: s.string().max(999).optional(),
+      date: s.isodate(),
+      published: s.boolean().default(true),
+      tags: s.array(s.string()).optional(),
+      series: s.array(s.string()).optional(),
+      writer: s.string().max(50),
+      body: s.mdx(),
+    })
+    .transform(computedFields),
 });
 
 const snippets = defineCollection({
-    name: "Snippet",
-    pattern: "snippets/**/*.mdx",
-    schema: s.
-        object({
-            slug: s.path(),
-            title: s.string().max(99),
-            date: s.isodate(),
-            description: s.string().max(999),
-            published: s.boolean().default(true),
-            writer: s.string().max(50),
-            body: s.mdx()
-        })
-        .transform(computedFields)
+  name: "Snippet",
+  pattern: "snippets/**/*.mdx",
+  schema: s.
+    object({
+      slug: s.path(),
+      title: s.string().max(99),
+      date: s.isodate(),
+      description: s.string().max(999),
+      published: s.boolean().default(true),
+      writer: s.string().max(50),
+      body: s.mdx()
+    })
+    .transform(computedFields)
 })
 
 export default defineConfig({
-    root: "content",
-    output: {
-        data: ".velite",
-        assets: "public/static",
-        base: "/static/",
-        name: "[name]-[hash:6].[ext]",
-        clean: true,
-    },
-    collections: { posts, snippets },
-    mdx: {
-        rehypePlugins: [
-            [
-                () => (tree) => {
-                    visit(tree, (node: any) => {
-                        if (node?.type === "element" && node?.tagName === "pre") {
-                            const [codeEl] = node.children;
+  root: "content",
+  output: {
+    data: ".velite",
+    assets: "public/static",
+    base: "/static/",
+    name: "[name]-[hash:6].[ext]",
+    clean: true,
+  },
+  collections: { posts, snippets },
+  mdx: {
+    rehypePlugins: [
+      [
+        () => (tree) => {
+          visit(tree, (node: any) => {
+            if (node?.type === "element" && node?.tagName === "pre") {
+              const [codeEl] = node.children;
 
-                            if (codeEl.tagName !== "code") return;
+              if (codeEl.tagName !== "code") return;
 
-                            node.raw = codeEl.children?.[0].value;
-                        }
-                    });
-                },
-            ],
-            rehypeCodeTitles,
-            rehypeSlug,
-            [rehypePrettyCode, { theme: "github-dark" }],
-            [
-                rehypeAutolinkHeadings,
-                {
-                    behavior: "wrap",
-                    properties: {
-                        className: ["subheading-anchor"],
-                        ariaLabel: "Link to section",
-                    },
-                },
-            ],
-            () => (tree) => {
-                visit(tree, (node) => {
-                    if (node?.type === "element" && node?.tagName === "figure") {
-                        if (!("data-rehype-pretty-code-figure" in node.properties)) {
-                            return;
-                        }
+              node.raw = codeEl.children?.[0].value;
+            }
+          });
+        },
+      ],
+      rehypeCodeTitles,
+      rehypeSlug,
+      [rehypePrettyCode, { theme: "github-dark" }],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: {
+            className: ["subheading-anchor"],
+            ariaLabel: "Link to section",
+          },
+        },
+      ],
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "figure") {
+            if (!("data-rehype-pretty-code-figure" in node.properties)) {
+              return;
+            }
 
-                        for (const child of node.children) {
-                            if (child.tagName === "pre") {
-                                child.properties["raw"] = node.raw;
-                            }
-                        }
-                    }
-                });
-            },
-        ],
-        remarkPlugins: [],
-    },
+            for (const child of node.children) {
+              if (child.tagName === "pre") {
+                child.properties["raw"] = node.raw;
+              }
+            }
+          }
+        });
+      },
+    ],
+    remarkPlugins: [],
+  },
 });

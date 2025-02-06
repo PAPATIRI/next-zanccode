@@ -47,7 +47,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <div className="flex-1 space-y-4">
           <h1
             className={cn(
-              "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
+              "inline-block text-slate-600 dark:text-slate-300 font-serif text-4xl lg:text-5xl tracking-wider",
               serifDisplay.variable
             )}
           >
@@ -56,7 +56,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-4 mt-8">
-        <div className="col-span-12 col-start-1 sm:col-span-8">
+        <div className="mr-0 sm:mr-6 col-span-12 col-start-1 sm:col-span-8">
           {displayPosts?.length > 0 ? (
             <ul className="flex flex-col gap-6">
               {displayPosts.map((post) => {
@@ -84,11 +84,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             />
           }
         </div>
-        <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
-          <CardHeader>
-            <CardTitle>Tags</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
+        <div className="ml-0 sm:ml-6 col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
+          <div>
+            <p className="text-xl font-light capitalize mb-4 text-slate-600 dark:text-slate-300">Tags</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
             <Link
               href={`/blog`}
               className={badgeVariants({
@@ -101,8 +101,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             {sortedTags?.map((tag) => (
               <Tag tag={tag} key={tag} count={tags[tag]} />
             ))}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

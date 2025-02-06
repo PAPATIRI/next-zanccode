@@ -23,7 +23,7 @@ export default async function AboutPage() {
         <div className="flex-1 space-x-4">
           <h1
             className={cn(
-              "inline-block font-serif text-4xl lg:text-5xl tracking-wider",
+              "inline-block text-slate-600 dark:text-slate-300 font-serif text-4xl lg:text-5xl tracking-wider",
               serifDisplay.variable,
             )}
           >
@@ -38,10 +38,10 @@ export default async function AboutPage() {
             <AvatarImage src="/avatar.png" alt={siteConfig.author} />
             <AvatarFallback>zancc</AvatarFallback>
           </Avatar>
-          <h2 className="text-2xl font-bold text-center break-words">
+          <h2 className="text-2xl font-bold text-slate-600 dark:text-slate-300 text-center break-words">
             {siteConfig.author}
           </h2>
-          <p className="text-muted-foreground text-center break-words">
+          <p className="text-slate-500 dark:text-slate-400 text-center break-words">
             Programmer Ganteng & Intelek
           </p>
           <div className="mt-8 flex items-center mx-auto gap-2">
@@ -81,18 +81,15 @@ export default async function AboutPage() {
           </div>
         </div>
         <div>
-          <p className="text-muted-foreground text-base py-2">
-            seorang pria tampan kelahiran pedalaman Kalimantan Barat. dengan
+          <p className="indent-8 text-slate-600 dark:text-slate-300 text-base py-2">
+            Seorang pria tampan kelahiran pedalaman Kalimantan Barat. dengan
             nama syarif taufik hidayatulloh (nama menurut akta kelahiran), yang
             berarti kurang lebih &quot;petunjuk atau hidayah dari Allah yang
             mulia&quot; dayummmmmm so gewd my name, thnx ayahanda dan ibunda
             koeh.
           </p>
-          <p className="text-muted-foreground text-base py-2">blog ini saya dedikasikan untuk diri saya sendiri tentunya. seperti kata para ulama yang berbunyi <b>&quot;ilmu itu ibarat binatang buruan, dan tulisan adalah tali pengikatnya. maka ikatlah binatang buruan tersebut dengan tali yang kuat dan kokoh</b>. sehingga kedepannya saya harap tulisan tulisan saya dapat bermanfaat untuk diri saya sendiri sebagai pengikat terhadap ilmu-ilmu yang saya pelajari dan menjadi pengingat pastinya karena manusia tempatnya lupa.</p>
-          <p className="text-muted-foreground text-base py-2">
-            senang mengenal anda saudara/i ku, semoga kita bertemu di surga
-            nanti 😎
-          </p>
+          <p className="indent-8 text-slate-600 dark:text-slate-300 text-base py-2">blog ini saya dedikasikan untuk diri saya sendiri tentunya. seperti kata para ulama yang berbunyi <b>&quot;ilmu itu ibarat binatang buruan, dan tulisan adalah tali pengikatnya. maka ikatlah binatang buruan tersebut dengan tali yang kuat dan kokoh</b>. sehingga kedepannya saya harap tulisan tulisan saya dapat bermanfaat untuk diri saya sendiri sebagai pengikat terhadap ilmu-ilmu yang saya pelajari dan menjadi pengingat pastinya karena manusia tempatnya lupa.</p>
+          <p className="text-slate-600 dark:text-slate-300 text-base py-2">see u on top mate!</p>
         </div>
       </div>
     </div>

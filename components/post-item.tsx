@@ -19,7 +19,7 @@ export function PostItem({
 }: PostItemProps) {
   return (
     <article className="group flex flex-col mb-8 md:mb-12 transition-all ease-in-out duration-500">
-      <h2 className="text-md md:text-xl capitalize mb-1.5 font-sans font-medium text-primary group-hover:underline group-hover:underline-offset-2">
+      <h2 className="text-md md:text-xl capitalize mb-1.5 font-sans font-medium text-slate-600 dark:text-slate-300 group-hover:underline group-hover:underline-offset-2">
         <Link href={"/" + slug} className="line-clamp-2">
           {title}
         </Link>
