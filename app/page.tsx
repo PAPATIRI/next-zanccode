@@ -26,7 +26,10 @@ export default function Home() {
         <div className="container">
           <p
             style={{ lineHeight: "1.3em" }}
-            className={cn("mb-8 font-bold tracking-wide text-slate-600 dark:text-slate-300 text-3xl font-serif sm:text-5xl uppercase", serifDisplay.variable)}
+            className={cn(
+              "mb-8 font-bold tracking-wide text-slate-600 dark:text-slate-300 text-3xl font-serif sm:text-5xl uppercase",
+              serifDisplay.variable
+            )}
           >
             This is my dear diary, i write all my problems down, so my problem
             is half solved, that&apos;s what saying says.

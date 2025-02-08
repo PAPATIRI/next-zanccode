@@ -3,7 +3,6 @@ import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
 import { badgeVariants } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn, getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
@@ -86,7 +85,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
         <div className="ml-0 sm:ml-6 col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
           <div>
-            <p className="text-xl font-light capitalize mb-4 text-slate-600 dark:text-slate-300">Tags</p>
+            <p className="text-xl font-light capitalize mb-4 text-slate-600 dark:text-slate-300">
+              Tags
+            </p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Link

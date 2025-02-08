@@ -18,6 +18,11 @@ const config = {
         "2xl": "1400px",
       },
     },
+    backgroundSize: {
+      "200%": "200%",
+      "300%": "300%",
+      "400%": "400%",
+    },
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
@@ -72,10 +77,25 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        rotate: {
+          from: { transform: "rotate(0)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        glow: {
+          "0%": { "background-position": "0 0" },
+          "50%": { "background-position": "100% 0" },
+          "100%": { "background-position": "0 0" },
+        },
+        lefttoright: {
+          "0%": { "background-position": "left" },
+          "100%": { "background-position": "right" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "rotate-border": "rotate 4s linear infinite",
+        "left-to-right": "lefttoright 3s infinite alternate",
       },
     },
   },
