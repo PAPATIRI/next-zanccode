@@ -1,0 +1,126 @@
+---
+title: integrasi lokal development react native ft laravel
+description: integrasi agar react native app yang di jalankan di phisycal device dapat melakukan http request ke laravel app di lokal development
+date: 2025-02-11
+tags: ["react native", "laravel"]
+series: ["how to"]
+published: true
+writer: czanc
+---
+
+# Perkenalan
+
+saya sedang mengembangkan aplikasi mobile dengan react native framework yaitu expo. aplikasi ini adalah aplikasi manajemen absen untuk karyawan minimarket dan aplikasi untuk cek harga barang baik dengan mencari nama produk atau dengan scanning barcode barang.
+
+backend yang saya gunakan adalah laravel 9. saat membuat endpoint API tidak ada kendala untuk menjalankan simulasi http request karena adanya insomnia atau postman. tapi ketika mulai membangun aplikasi mobile dan akan melakukan integrasi kedua app ini untuk melakukan request dan response data melalui API, di sinilah saya menemukan kendala.
+
+dan syukurnya kendala ini dapat saya temukan solusinya dengan bantuan claude AI. AKU CINTA AI. wkwkwwkwwk.
+
+# note!
+
+disclaimer! ini bekerja di komputer, program, aplikasi, semesta saya ya. jadi saya tidak peduli kalo tidak bekerja di kalian.
+spesifikasi software dan hardware saat kendala ini terjadi adalah:
+  1. react native expo SDK 52
+  2. laravel 9 dengan mysql database
+  3. windows 10 home
+  4. expo go app (android app)
+
+
+# eksekusi
+solusinya sebenarnya relatif cukup mudah. tapi saya menghabiskan banyak waktu googling dan kebanyakan solusi yang tersebar di internet itu untuk emulator, bukan physical device.
+
+## mengganti url laravel menjadi ip komputer
+saat menjalankan aplikasi laravel di lokal komputer, secara default ini akan menggunakan localhost seagai url nya. contohnya seperti `http://localhost:8000/api` untuk url api di palikasi laravel. jadi step pertama kita perlu mengubah localhost di sini dimana secara default ip nya biasanya `127.0.0.1` menjadi ip dari komputer kita.
+
+kita perlu mendapatkan berapa ip dari komputer kita. karena saya mengunakan windows jadi saya bisa menggunakan perintah ipconfig di termianl saya.
+
+<Pre>
+```shell:check-ip-number
+ipconfig
+```
+</Pre>
+
+hasil dari perintah di di atas biasanya detail detail dari ipv4 atau ipv6 yang di gunakaan dan lainnya perkara network yang saya tidak paham. tapi yang perlu kita gunakan adalah ipv4 di bagian `wireless LAN adapter WIFI`. biasanya berada di bagian akhir dari perintah ipconfig di atas.
+
+<Pre>
+```shell:beberapa-hasil-ipconfig
+...hasil lainnya
+Wireless LAN adapter WiFi:
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2407:0:30e2:ae5f:5cde:d68a:****:****
+   Temporary IPv6 Address. . . . . . : 2407:0:30e2:ae5f:4c6f:6275:****:****
+   Link-local IPv6 Address . . . . . : fe80::6d7:b4b2:****:****%17
+   IPv4 Address. . . . . . . . . . . : 192.168.1.234
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::b4c2:c2ff:****:****%17
+                                       192.168.1.234
+```
+</Pre>
+
+jadi ip yang akan kita gunakan sebagi url dari laravel app kita di lokal development adalah `192.168.1.234`.
+
+selanjutnya kita buka project laravel app kita dan buka di `.env` file untuk mengganti url aplikasi kita di bagian `APP_URL` menjadi ip computer kita.
+
+<Pre>
+```shell:env-config
+APP_URR=http://192.168.1.234:8000
+```
+</Pre>
+
+dan selanjutnya ketika kita menjalankan laravel app, kita perlu menambahkan keterangan dari host dan port yang di guanakan oleh laravel app kita.
+
+<Pre>
+```shell:running-laravel-app
+php artisan serve --host=192.168.1.234 --port=8000
+```
+</Pre>
+
+setup laravel app agar http request dapat dilakukan dari app yang berbeda dalam satu jaringan sudah selesai. untuk memastikan semua berjalan lancar harusnya di cors setting laravel app dapat di lihat di folder `config/cors.php`. seharusnya secara default sudah benar dan tampak seperti di bawah ini. jika sudah sama harusnya sudah benar karena konfigurasi cors di bawah ini adalah agar laravel app di lokal komputer kita dapat menerima http request dari aplikasi lain.
+
+<Pre>
+```php:cors.php showLineNumbers
+<?php
+return [
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'allowed_methods' => ['*'],
+    'allowed_origins' => ['*'],
+    'allowed_origins_patterns' => [],
+    'allowed_headers' => ['*'],
+    'exposed_headers' => [],
+    'max_age' => 0,
+    'supports_credentials' => false,
+];
+```
+</Pre>
+
+## menggunakan url laravel di react native
+setelah project laravel berjalan dengan menggunakan alamat ip komputer sebagai url nya, selanjutnya kita hanya perlu menggunakan url tersebut di dalam projek react native.
+saya di sini menggunakan framework react native yaitu expo. di expo bisa menggunakan `.env` dengan prefix `EXPO_PUBLI_*` untuk menyimpan base API url nya.
+
+<Pre>
+```shell:env-file
+EXPO_PUBLIC_API_URL=http://192.168.1.234:8000/api
+```
+</Pre>
+
+jadi penggunaan url api ini dapat dipanggil di project react native dengan mudah.
+<Pre>
+```javascript:axios-setup showLineNumbers
+const apiBaseUrl = process.env.EXPO_PUBLIC_BASE_API_URL;
+const api: AxiosInstance = axios.create({
+  baseURL: `${apiBaseUrl}`,
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+```
+</Pre>
+
+# penutup
+
+cukup sekian bagaimana saya menyembuhkan penyakit ubuntu saya tidak bisa menambahkan ppa repository. kenapa saya bilang penyakit?.
+ini karena sebelumnya saya sudah memfix problem ini tapi saya lupa apa solusinya karena saya pakai berbagai cara dan tiba tiba bener aja.
+tapi setelah update ubuntu yang lumayan besar (sekitar 600mb, ini karena ada chrome anjer), tiba-tiba saya tidak bisa menambahkan ppa repository saya.
+
+ADIOS!!!
