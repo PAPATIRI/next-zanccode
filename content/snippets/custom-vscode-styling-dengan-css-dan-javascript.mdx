@@ -12,11 +12,14 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
 ```css:custom-vscode.css showLineNumbers
 
 /*tab size styling*/
-/* .tabs-container, */
 .tab,
 .tab .monaco-icon-label,
 .tab .monaco-icon-label-container,
-.tab .monaco-icon-name-container {
+.tab .monaco-icon-name-container,
+.tabs
+  > .tabs-and-actions-container
+  > .monaco-scrollable-element
+  > .tabs-container {
   height: 26px !important;
 }
 
@@ -186,7 +189,6 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
   flex-direction: row !important;
   align-items: center !important;
   justify-items: center !important;
-  margin-bottom: 10px !important;
 }
 
 .composite.title h2 {
@@ -361,7 +363,7 @@ customisasi tampilan dari vs code dengan custom css dan js dengan menggunakan pl
 
 .command-center-center {
   width: auto !important;
-} 
+}
 
 ```
 </Pre>
