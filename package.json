@@ -5,11 +5,10 @@
   "scripts": {
     "dev:content": "velite --watch",
     "build:content": "velite --clean",
-    "dev:next": "next dev",
-    "build:next": "next build",
-    "dev": "run-p dev:*",
-    "build": "run-s build:*",
-    "start": "next start"
+    "start": "next start",
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
