@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { GlobeIcon, Instagram, Twitter } from "lucide-react";
+import { Camera, GlobeIcon, Instagram, Music2, Twitter } from "lucide-react";
 import { Metadata } from "next";
 import { DM_Serif_Display } from "next/font/google";
 
@@ -51,8 +51,8 @@ export default async function AboutPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <Twitter
-                size={28}
+              <Music2
+                size={24}
                 className="text-foreground transition-all duration-500 group-hover:rotate-45"
               />
             </a>
@@ -62,7 +62,8 @@ export default async function AboutPage() {
               className="group bg-accent p-3 rounded-full flex items-center justify-center"
               rel="noreferrer"
             >
-              <Instagram
+              <Camera
+                xlinkTitle="instagram"
                 size={28}
                 className="text-foreground transition-all duration-500 group-hover:rotate-45"
               />
@@ -88,8 +89,22 @@ export default async function AboutPage() {
             mulia&quot; dayummmmmm so gewd my name, thnx ayahanda dan ibunda
             koeh.
           </p>
-          <p className="indent-8 text-slate-600 dark:text-slate-300 text-base py-2">blog ini saya dedikasikan untuk diri saya sendiri tentunya. seperti kata para ulama yang berbunyi <b>&quot;ilmu itu ibarat binatang buruan, dan tulisan adalah tali pengikatnya. maka ikatlah binatang buruan tersebut dengan tali yang kuat dan kokoh</b>. sehingga kedepannya saya harap tulisan tulisan saya dapat bermanfaat untuk diri saya sendiri sebagai pengikat terhadap ilmu-ilmu yang saya pelajari dan menjadi pengingat pastinya karena manusia tempatnya lupa.</p>
-          <p className="text-slate-600 dark:text-slate-300 text-base py-2">see u on top mate!</p>
+          <p className="indent-8 text-slate-600 dark:text-slate-300 text-base py-2">
+            blog ini saya dedikasikan untuk diri saya sendiri tentunya. seperti
+            kata para ulama yang berbunyi{" "}
+            <b>
+              &quot;ilmu itu ibarat binatang buruan, dan tulisan adalah tali
+              pengikatnya. maka ikatlah binatang buruan tersebut dengan tali
+              yang kuat dan kokoh
+            </b>
+            . sehingga kedepannya saya harap tulisan tulisan saya dapat
+            bermanfaat untuk diri saya sendiri sebagai pengikat terhadap
+            ilmu-ilmu yang saya pelajari dan menjadi pengingat pastinya karena
+            manusia tempatnya lupa.
+          </p>
+          <p className="text-slate-600 dark:text-slate-300 text-base py-2">
+            see u on top mate!
+          </p>
         </div>
       </div>
     </div>
