@@ -28,13 +28,14 @@ interface BlogPageProps {
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams?.page) || 1;
+  const params = await searchParams;
+  const currentPage = Number(params?.page) || 1;
   const sortedPosts = sortPosts(posts.filter((post) => post.published));
   const totalPages = Math.ceil(sortedPosts.length / POST_PER_PAGE);
 
   const displayPosts = sortedPosts.slice(
     POST_PER_PAGE * (currentPage - 1),
-    POST_PER_PAGE * currentPage
+    POST_PER_PAGE * currentPage,
   );
 
   const tags = getAllTags(posts);
@@ -47,7 +48,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <h1
             className={cn(
               "inline-block text-slate-600 dark:text-slate-300 font-serif text-4xl lg:text-5xl tracking-wider",
-              serifDisplay.variable
+              serifDisplay.variable,
             )}
           >
             Blog.

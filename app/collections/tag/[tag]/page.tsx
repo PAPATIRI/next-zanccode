@@ -38,8 +38,8 @@ export const generateStaticParams = () => {
   return paths;
 };
 
-export default function TagPage({ params }: TagPageProps) {
-  const { tag } = params;
+export default async function TagPage({ params }: TagPageProps) {
+  const { tag } = await params;
   const title = tag.split("-").join(" ");
 
   const displayPosts = getPostByTagSlug(posts, tag);
@@ -49,8 +49,7 @@ export default function TagPage({ params }: TagPageProps) {
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
       <div className="mb-10 md:mb-20 py-4 px-4 rounded border-l-4 border-slate-400">
-        <h1
-          className="capitalize inline-block font-serif text-slate-600 dark:text-slate-300 text-xl lg:text-3xl tracking-wider" >
+        <h1 className="capitalize inline-block font-serif text-slate-600 dark:text-slate-300 text-xl lg:text-3xl tracking-wider">
           #{title}
         </h1>
       </div>
@@ -78,7 +77,9 @@ export default function TagPage({ params }: TagPageProps) {
           )}
         </div>
         <div className="col-span-12 ml-0 sm:ml-6 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
-          <p className="text-slate-600 dark:text-slate-300 capitalize text-xl font-light mb-4">Tags</p>
+          <p className="text-slate-600 dark:text-slate-300 capitalize text-xl font-light mb-4">
+            Tags
+          </p>
           <div className="flex flex-wrap gap-2">
             <Link
               href={`/blog`}

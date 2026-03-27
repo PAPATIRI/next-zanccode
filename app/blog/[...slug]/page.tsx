@@ -21,7 +21,8 @@ interface PostPageProps {
 }
 
 async function getPostFromParams(params: PostPageProps["params"]) {
-  const slug = params?.slug?.join("/");
+  const param = await params;
+  const slug = param?.slug?.join("/");
   const post = posts.find((post) => post.slugAsParams === slug);
 
   return post;
@@ -82,7 +83,10 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
       <h1
-        className={cn("mb-8 font-serif tracking-wider text-slate-700 dark:text-slate-200", serifDisplay.variable)}
+        className={cn(
+          "mb-8 font-serif tracking-wider text-slate-700 dark:text-slate-200",
+          serifDisplay.variable,
+        )}
       >
         {post.title}
       </h1>

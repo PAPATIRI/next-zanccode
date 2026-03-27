@@ -15,12 +15,13 @@ const serifDisplay = DM_Serif_Display({
 
 interface SnippetDetailPageProps {
   params: {
-    slug: String[]
-  }
+    slug: String[];
+  };
 }
 
 async function getSnippetFromParams(params: SnippetDetailPageProps["params"]) {
-  const slug = params?.slug?.join("/");
+  const param = await params;
+  const slug = param?.slug?.join("/");
   const post = snippets.find((snippet) => snippet.slugAsParams === slug);
 
   return post;
@@ -71,8 +72,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function SnippetDetailPage({ params }: SnippetDetailPageProps) {
-  const snippet = await getSnippetFromParams(params)
+export default async function SnippetDetailPage({
+  params,
+}: SnippetDetailPageProps) {
+  const snippet = await getSnippetFromParams(params);
 
   if (!snippet || !snippet.published) {
     notFound();
@@ -81,13 +84,16 @@ export default async function SnippetDetailPage({ params }: SnippetDetailPagePro
   return (
     <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
       <h1
-        className={cn("mb-8 font-serif text-slate-700 dark:text-slate-300 tracking-wider", serifDisplay.variable)}
+        className={cn(
+          "mb-8 font-serif text-slate-700 dark:text-slate-300 tracking-wider",
+          serifDisplay.variable,
+        )}
       >
         {snippet.title}
       </h1>
       <div className="*:text-slate-700 dark:*:text-slate-300">
         <MDXContent code={snippet.body} />
       </div>
-    </article >
-  )
+    </article>
+  );
 }
